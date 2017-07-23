@@ -11,139 +11,115 @@
 
 namespace Antvel\AddressBook;
 
+use Antvel\Support\Repository;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Auth;
 use Antvel\AddressBook\Models\Address;
 use Illuminate\Contracts\Auth\Authenticatable;
 
-class AddressBook
+class AddressBook extends Repository
 {
 	/**
 	 * The user who owns the address.
 	 *
-	 * @var Antvel\Customer\Models\User
+	 * @var Authenticatable
 	 */
 	protected $user = null;
 
 	/**
-	 * Return the current user.
-	 *
-	 * @return Antvel\Customer\Models\User
-	 */
-	protected function user() : Authenticatable
-	{
-		return auth()->user();
-	}
+     * Creates a new instance.
+     *
+     * @param Address $category
+     */
+    public function __construct(Address $address)
+    {
+        $this->setModel($address);
+    }
 
-	/**
-	 * Retrieve the address book for a given user.
-	 *
-	 * @param  User|null $user
-	 * @param  string $sort
-	 *
-	 * @return Collection
-	 */
-	public function forUser(Authenticatable $user = null, string $sort = 'default') : Collection
-	{
-		$user = is_null($user) ? $this->user() : $user;
-
-		return $user->addresses->sortByDesc($sort);
-	}
-
-	/**
-	 * Retrieve a requested address.
-	 *
-	 * @param int $id
-	 *
-	 * @return Address
-	 */
-	public function find(int $id) : Address
-	{
-		return Address::findOrFail($id);
-	}
-
-	/**
-	 * Create an address in the database.
-	 *
-	 * @param  array $data
-	 *
-	 * @return Address
-	 */
-	public function create(array $data, Authenticatable $user = null) : Address
+    /**
+     * Set the user who owns the address.
+     *
+     * @param  Authenticatable $user
+     *
+     * @return self
+     */
+	public function for(Authenticatable $user)
 	{
 		$this->user = $user;
 
-		$data = array_merge([
-			'user_id' => $this->user_id()
-		], $data);
+		return $this;
+	}
 
-		return Address::create($data);
+	protected function user()
+	{
+		return is_null($this->user) ? Auth::user() : $this->user;
 	}
 
 	/**
-	 * Crate a new address in the database and set it to default.
-	 *
-	 * @param  array $data
-	 *
-	 * @return Address
-	 */
-	public function createAndSetToDefault(array $data, Authenticatable $user = null) : Address
-	{
-		$address = $this->create($data, $user);
-		$this->setDefault($address);
+     * Save a new model and return the instance.
+     *
+     * @param  array $attributes
+     *
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public function create(array $attributes)
+    {
+		return Address::create([
+			'user_id' => $this->user()->id,
+            'name_contact' => $attributes['name_contact'],
+            'phone' => $attributes['phone'],
+            'country' => $attributes['country'],
+            'state' => $attributes['state'],
+            'city' => $attributes['city'],
+            'zipcode' => $attributes['zipcode'],
+            'line1' => $attributes['line1'],
+            'line2' => $attributes['line2']
+		]);
+    }
 
-		return $address;
-	}
+    /**
+     * Update a Model in the database.
+     *
+     * @param array $attributes
+     * @param Category|mixed $idOrModel
+     * @param array $options
+     *
+     * @return bool
+     */
+    public function update(array $attributes, $idOrModel, array $options = [])
+    {
+		$address = $this->modelOrFind($idOrModel);
 
-	/**
-	 * Set to default a given address.
-	 *
-	 * @param Address\int $address
-	 *
-	 * @return void
-	 */
-	public function setDefault($address)
-	{
-		$this->resetDefault();
-
-		if (is_integer($address)) {
-			$address = $this->find($address);
+		if (isset($attributes['default']) && $attributes['default']) {
+			$this->resetDefaults();
 		}
 
-		$address->default = 1;
-		$address->save();
-	}
+		return $address->update($attributes, $options);
+    }
 
 	/**
-	 * Reset the default address.
-	 *
-	 * @return void
-	 */
-	protected function resetDefault()
-	{
-		Address::where('user_id', $this->user_id())
-			->where('default', 1)
-			->update(['default' => 0]);
-	}
-
-	/**
-	 * Destroy a given address.
+	 * Destroy the given address.
 	 *
 	 * @param int $id
 	 *
-	 * @return void
+	 * @return bool
 	 */
-	public function destroy(int $id)
+	public function destroy($idOrModel)
 	{
-		Address::destroy($id);
+		$address = $this->modelOrFind($idOrModel);
+
+		return $address->delete();
 	}
 
 	/**
-	 * Return the user id.
+	 * Reset the default addresses for a given user.
 	 *
-	 * @return int
+	 * @return void
 	 */
-	protected function user_id() : int
+	public function resetDefaults()
 	{
-		return is_null($this->user) ? $this->user()->id : $this->user->id;
+		Address::where('user_id', $this->user()->id)
+			->where('default', true)
+			->update(['default' => false]);
 	}
 }

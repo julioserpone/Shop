@@ -62,7 +62,7 @@ class SearchController extends Controller
 			'description' => $request->get('q'),
 		], ['id', 'name'], 4);
 
-		$response['products']['suggestions'] = Suggestions\Suggest::for('my_searches')->shake();
+		$response['products']['suggestions'] = Suggestions\Suggest::for('my_searches')->shake()->get('my_searches');
 
 		$response['products']['categories_title'] = trans('globals.suggested_categories');
         $response['products']['suggestions_title'] = trans('globals.suggested_products');

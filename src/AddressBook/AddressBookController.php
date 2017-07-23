@@ -13,6 +13,7 @@ namespace Antvel\AddressBook;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AddressBookController extends Controller
@@ -44,27 +45,13 @@ class AddressBookController extends Controller
     }
 
     /**
-     * Setting to default a given address.
-     *
-     * @param Request $request
-     */
-    public function setDefault(Request $request)
-    {
-        $this->addressBook->setDefault((int) $request->id);
-
-        return $this->respondsWithSuccess(
-            '', $this->redirecTo
-        );
-    }
-
-    /**
      * List the user address.
      *
      * @return void
      */
     public function index(Request $request)
     {
-        $addresses = $this->addressBook->forUser();
+        $addresses = Auth::user()->addresses;
 
         $defaultId = $addresses->where('default', true)->pluck('id')->first();
 
@@ -91,7 +78,7 @@ class AddressBookController extends Controller
      */
     public function store(AddressBookRequest $request)
     {
-        $address = $this->addressBook->createAndSetToDefault(
+        $address = $this->addressBook->create(
             $request->all()
         );
 
@@ -116,7 +103,7 @@ class AddressBookController extends Controller
     public function edit(int $id)
     {
         return view('address.form_edit', [
-            'address' => $this->addressBook->find($id)
+            'address' => $this->addressBook->find($id)->first()
         ]);
     }
 
@@ -131,12 +118,15 @@ class AddressBookController extends Controller
     public function update(AddressBookRequest $request, int $id)
     {
         try {
-            ! $address = $this->addressBook->find($id);
+            $address = $this->addressBook->find([
+                'user_id' => Auth::user()->id,
+                'id' => $id
+            ]);
         } catch(ModelNotFoundException $e) {
             return $this->respondsWithError(trans('address.errors.model_not_found'));
         }
 
-        $address->update($request->all());
+        $this->addressBook->update($request->all(), $address->first());
 
         return $this->respondsWithSuccess(
             trans('address.success_update'), $this->redirecTo
@@ -153,6 +143,31 @@ class AddressBookController extends Controller
     public function destroy(Request $request)
     {
         $this->addressBook->destroy($request->id);
+
+        return $this->respondsWithSuccess(
+            '', $this->redirecTo
+        );
+    }
+
+    /**
+     * Setting to default a given address.
+     *
+     * @param Request $request
+     */
+    public function setDefault(Request $request)
+    {
+        try {
+            ! $address = $this->addressBook->find([
+                'user_id' => Auth::user()->id,
+                'id' => $request->get('id')
+            ]);
+        } catch(ModelNotFoundException $e) {
+            return $this->respondsWithError(trans('address.errors.model_not_found'));
+        }
+
+        $this->addressBook->update(
+            ['default' => true], $address->first()
+        );
 
         return $this->respondsWithSuccess(
             '', $this->redirecTo

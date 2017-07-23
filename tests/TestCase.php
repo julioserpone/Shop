@@ -11,11 +11,14 @@
 
 namespace Antvel\Tests;
 
+use Antvel\Antvel;
 use Orchestra\Testbench\TestCase as Orchestra;
 
 abstract class TestCase extends Orchestra
 {
-    use Environment, InteractWithPictures;
+    use Concerns\Environment,
+        Concerns\InteractWithUsers,
+        Concerns\InteractWithPictures;
 
     /**
      * Setup the test environment
@@ -25,41 +28,9 @@ abstract class TestCase extends Orchestra
     public function setUp()
     {
         parent::setUp();
+
+        Antvel::routes();
         $this->loadFactories();
         $this->loadMigrations();
-    }
-
-    /**
-     * Sign in a given user.
-     *
-     * @param  string $state
-     * @param  array  $attr
-     *
-     * @return void
-     */
-    protected function signIn($attr = [])
-    {
-        $user = factory('Antvel\User\Models\User')->create($attr);
-
-        $this->actingAs($user);
-
-        return $user;
-    }
-
-    /**
-     * Sign in an user as given state.
-     *
-     * @param  string $state
-     * @param  array  $attr
-     *
-     * @return void
-     */
-    protected function signInAs($state, $attr = [])
-    {
-        $user = factory('Antvel\User\Models\User')->states($state)->create($attr);
-
-        $this->actingAs($user);
-
-        return $user;
     }
 }

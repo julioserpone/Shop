@@ -9,9 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests;
-
-use Illuminate\Support\Facades\Artisan;
+namespace Antvel\Tests\Concerns;
 
 trait Environment
 {
@@ -32,30 +30,47 @@ trait Environment
      */
     protected function loadFactories()
     {
-        $this->withFactories(__DIR__ . '/../database/factories');
+        $this->withFactories(__DIR__ . '/../../database/factories');
     }
 
     /**
      * Define environment setup.
      *
      * @param  \Illuminate\Foundation\Application $app
+     *
      * @return void
      */
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('app.key', $this->generateRandomKey($app));
         $app['path.lang'] = $this->getFixturesDirectory('lang');
-        $app['path.storage'] = __DIR__ . "/../storage";
+        $app['path.storage'] = __DIR__ . "/../../storage";
+    }
+
+    /**
+     * Generate a random key for the application.
+     *
+     * @param \Illuminate\Foundation\Application $app
+     *
+     * @return string
+     */
+    protected function generateRandomKey($app)
+    {
+        return 'base64:'.base64_encode(random_bytes(
+            $app['config']['app']['cipher'] == 'AES-128-CBC' ? 16 : 32
+        ));
     }
 
     /**
      * Load the translations files.
      *
      * @param  string $path
+     *
      * @return string
      */
     public function getFixturesDirectory(string $path): string
     {
-        return __DIR__ . "/../resources/{$path}";
+        return __DIR__ . "/../../resources/{$path}";
     }
 
     /**
@@ -79,7 +94,7 @@ trait Environment
     {
         $this->app->make('config')->set(
             'filesystems.disks.local.root',
-            __DIR__ . '/../storage/framework/testing/disks'
+            __DIR__ . '/../../storage/framework/testing/disks'
         );
     }
 }

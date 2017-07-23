@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "52c98610c719886e569222606c3b0f9b",
-    "content-hash": "ae54debd4ee8f49883ea4f7f7946c74a",
+    "hash": "08d5eee16ee2c9ef18e6b13300781a41",
+    "content-hash": "7b2b19f1d1214c91b011d3ca62a376ea",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -257,12 +257,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "a61a234a69079b9509757b19133c7f4c358b7be1"
+                "reference": "6b0376e9a9d50915a7155e337ad97e6c3e214adb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/a61a234a69079b9509757b19133c7f4c358b7be1",
-                "reference": "a61a234a69079b9509757b19133c7f4c358b7be1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/6b0376e9a9d50915a7155e337ad97e6c3e214adb",
+                "reference": "6b0376e9a9d50915a7155e337ad97e6c3e214adb",
                 "shasum": ""
             },
             "require": {
@@ -378,7 +378,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-07-20 19:12:26"
+            "time": "2017-07-23 11:36:20"
         },
         {
             "name": "league/flysystem",
@@ -2034,12 +2034,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/orchestral/testbench.git",
-                "reference": "f3fad60ab0c629203d6f0ebe7b368a69a70781cf"
+                "reference": "023aab8fdaa38811229dc6c777070b43e12a0b0c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/orchestral/testbench/zipball/f3fad60ab0c629203d6f0ebe7b368a69a70781cf",
-                "reference": "f3fad60ab0c629203d6f0ebe7b368a69a70781cf",
+                "url": "https://api.github.com/repos/orchestral/testbench/zipball/023aab8fdaa38811229dc6c777070b43e12a0b0c",
+                "reference": "023aab8fdaa38811229dc6c777070b43e12a0b0c",
                 "shasum": ""
             },
             "require": {
@@ -2086,7 +2086,7 @@
                 "orchestral",
                 "testing"
             ],
-            "time": "2017-07-22 19:57:37"
+            "time": "2017-07-23 03:26:45"
         },
         {
             "name": "orchestra/testbench-core",

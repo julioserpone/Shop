@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests;
+namespace Antvel\Tests\Concerns;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Filesystem\Filesystem;
