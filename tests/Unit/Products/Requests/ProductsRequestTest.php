@@ -168,6 +168,21 @@ class ProductsRequestTest extends TestCase
 	}
 
 	/** @test */
+	function the_product_brand_is_required()
+	{
+		$request = $this->submit(['brand' => '']);
+
+		$validator = Validator::make(
+	    	$request->all(), $request->rules()
+	    );
+
+	    tap($validator->messages(), function ($messages) {
+	    	$this->assertTrue($messages->has('brand'));
+			$this->assertEquals('validation.required', array_first($messages->get('brand')));
+		});
+	}
+
+	/** @test */
 	function the_product_stock_is_required()
 	{
 		$request = $this->submit(['stock' => '']);

@@ -53,7 +53,7 @@ class ProductsRequest extends Request
             'description' => 'required',
             'cost' => 'required|numeric|max:999999999',
             'price' => 'required|numeric|max:999999999',
-            'brand' => 'required|alpha_num',
+            'brand' => 'required',
             'stock' => 'required|integer',
             'low_stock' => 'required|integer',
             'status' => 'required|boolean',

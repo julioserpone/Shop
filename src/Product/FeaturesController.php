@@ -75,9 +75,7 @@ class FeaturesController extends Controller
             $request->all()
         );
 
-        return redirect()->route('features.edit', [
-            'feature' => $feature->id
-        ])->with('status', trans('globals.success_text'));
+        return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }
 
     /**
@@ -110,6 +108,6 @@ class FeaturesController extends Controller
             $request->all(), $feature
         );
 
-        return back()->with('status', trans('globals.success_text'));
+        return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }
 }

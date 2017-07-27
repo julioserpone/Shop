@@ -12,7 +12,6 @@
 namespace Antvel\User\Models;
 
 use Antvel\Product\Models\Product;
-use Antvel\AddressBook\Models\Address;
 use Illuminate\Notifications\Notifiable;
 use Antvel\User\Parsers\PreferencesParser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,7 +19,8 @@ use Antvel\User\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {
-    use Notifiable, Presenters;
+    use Notifiable,
+        Concerns\AddressBook;
 
 	/**
      * The attributes that are mass assignable.
@@ -53,16 +53,6 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
-
-    /**
-     * An user has an address book.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function addresses()
-    {
-        return $this->hasMany(Address::class);
-    }
 
     /**
      * An user has many products.
@@ -130,6 +120,18 @@ class User extends Authenticatable
     }
 
     /**
+     * Sets the password attribute.
+     *
+     * @param string $value
+     */
+    public function setPasswordAttribute($value)
+    {
+        if (isset($value)) {
+            $this->attributes['password'] = $value;
+        }
+    }
+
+    /**
      * Returns the user's preferences.
      *
      * @param  string  $value
@@ -144,6 +146,27 @@ class User extends Authenticatable
 
         return $preferences;
     }
+
+    /**
+     * Checks whether the user has a phone number.
+     *
+     * @return bool
+     */
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name . ' ' . $this->last_name);
+    }
+
+     /**
+     * Checks whether the user has a phone number.
+     *
+     * @return bool
+     */
+    public function getHasPhoneAttribute()
+    {
+        return ! is_null($this->phone_number);
+    }
+
 
 
     // ======================================= //

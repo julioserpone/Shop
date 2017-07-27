@@ -32,12 +32,7 @@ class AddressBookRouter implements ComponentRouter
 
 		], function ($router) {
 
-			$router->get('addressBook/', 'AddressBookController@index')->name('addressBook.index');
-			$router->put('addressBook/store', 'AddressBookController@store')->name('addressBook.store');
-			$router->put('addressBook/{id}', 'AddressBookController@update')->name('addressBook.update');
-            $router->get('addressBook/{id}/edit', 'AddressBookController@edit')->name('addressBook.edit');
-			$router->get('addressBook/create', 'AddressBookController@create')->name('addressBook.create');
-            $router->post('addressBook/delete', 'AddressBookController@destroy')->name('addressBook.delete');
+			$router->resource('addressBook', 'AddressBookController');
 			$router->post('addressBook/default', 'AddressBookController@setDefault')->name('addressBook.default');
 
         });
