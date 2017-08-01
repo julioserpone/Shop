@@ -13,7 +13,7 @@ namespace Antvel\Product\Models\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class Search
+class Search implements FilterContract
 {
 	/**
 	 * The requested seed.
@@ -27,7 +27,7 @@ class Search
 	 *
 	 * @var array
 	 */
-	protected $searchable = ['name', 'description', 'features', 'brand', 'tags'];
+	protected $searchable = ['name', 'description', 'brand', 'tags'];
 
 	/**
      * Create a new instance.
@@ -69,7 +69,7 @@ class Search
 	protected function resolveQuery(Builder $builder, string $seed) : Builder
 	{
 		foreach ($this->searchable as $field) {
-			$builder->orWhere($field, 'like', '%'.$seed.'%');
+			$builder->orWhere($field, 'like', '%'.urldecode($seed).'%');
 		}
 
 		return $builder;

@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products;
+namespace Antvel\Tests\Unit\Products\QueryFilter;
 
 use Antvel\Tests\TestCase;
 use Antvel\Product\Models\Product;
 use Antvel\Categories\Models\Category;
 
-class QueryFilterTest extends TestCase
+class IntegrationTest extends TestCase
 {
 	public function setUp()
 	{
@@ -137,6 +137,7 @@ class QueryFilterTest extends TestCase
 		//Categories setup
 		$category = factory(Category::class)->create(['name' => 'Entertainment']);
 		$subCategories = factory(Category::class, 2)->create(['category_id' => $category->id]);
+
 		$other = factory(Category::class)->create(['name' => 'Other']);
 		$otherSubCategories = factory(Category::class, 2)->create(['category_id' => $other->id]);
 
@@ -162,16 +163,37 @@ class QueryFilterTest extends TestCase
 		$this->assertCount(1, $products);
 	}
 
-	/** @test */
-	function it_can_filter_products_based_on_their_color()
+	/**
+	 * @test
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 */
+	function it_filters_products_by_a_given_color_and_weight()
 	{
-	    factory(Product::class, 2)->create();
-	    $product_01 = factory(Product::class)->create(['features' => '{"color": "black", "weight": "10", "dimensions": "5x5x10"}']);
-	    $product_02 = factory(Product::class)->create(['features' => '{"color": "black", "weight": "10", "dimensions": "5x5x10"}']);
-	    $product_03 = factory(Product::class)->create(['features' => '{"color": "red", "weight": "11", "dimensions": "6x5x10"}']);
+		$this->usingMySql();
 
-	    $products = $this->repository->filter([
-	    	'color' => 'black'
-	    ])->get();
+		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'color']);
+		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'weight']);
+
+	    factory(Product::class)->create(['name' => 'per', 'features' => '{"color": "red", "weight": "11"}']);
+	    factory(Product::class)->create(['name' => 'foo', 'features' => '{"color": "red", "weight": "11"}']);
+	    factory(Product::class)->create(['name' => 'tar', 'features' => '{"color": "blue", "weight": "10"}']);
+	    factory(Product::class)->create(['name' => 'biz', 'features' => '{"color": "green", "weight": "12"}']);
+	    factory(Product::class)->create(['name' => 'bar', 'features' => '{"color": "yellow", "weight": "13"}']);
+
+		$products = $this->repository->filter([
+			'color' => 'red',
+			'weight' => '11',
+		]);
+
+		tap($products->get()->pluck('features'), function ($products) {
+			$this->assertCount(2, $products);
+			foreach ($products as $product) {
+				$this->assertEquals('red', $product['color']);
+				$this->assertEquals('11', $product['weight']);
+			}
+		});
+
+	    $this->artisan('migrate:reset', ['--database' => self::TESTING_DB]);
 	}
 }

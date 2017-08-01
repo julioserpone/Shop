@@ -13,7 +13,7 @@ namespace Antvel\Product\Models\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class Conditions
+class Conditions implements FilterContract
 {
 	/**
 	 * The requested conditions.

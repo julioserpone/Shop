@@ -13,7 +13,7 @@ namespace Antvel\Product\Models\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class Prices
+class Prices implements FilterContract
 {
 	/**
 	 * The minimum amount requested.

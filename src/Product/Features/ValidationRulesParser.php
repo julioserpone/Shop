@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Parsers;
+namespace Antvel\Product\Features;
 
 use InvalidArgumentException;
 use Illuminate\Support\Collection;
 
-class FeaturesValidationRulesParser
+class ValidationRulesParser
 {
 	/**
 	 * The feature validation rules.

@@ -9,32 +9,20 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Parsers;
+namespace Antvel\Product\Features;
 
 use Illuminate\Support\Collection;
 
-class FeaturesParser
+class Parser
 {
 	/**
-	 * Creates a new instance.
+	 * Parses the given features to Json.
 	 *
-	 * @param  mixed $features
+	 * @param  array|Collection $features
 	 *
-	 * @return mixed
+	 * @return null|string
 	 */
-	public static function parse($features)
-	{
-		return (new static)->normalize($features);
-	}
-
-	/**
-	 * Normalize the given features.
-	 *
-	 * @param  mixed $features
-	 *
-	 * @return mixed
-	 */
-	protected function normalize($features)
+	public static function toJson($features)
 	{
 		if (is_null($features) || count($features) == 0) {
 			return null;

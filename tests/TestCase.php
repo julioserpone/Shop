@@ -21,6 +21,14 @@ abstract class TestCase extends Orchestra
         Concerns\InteractWithPictures;
 
     /**
+     * The MySql testing db.
+     *
+     * This db is used just to test the queries related to products filters
+     * because SqlLite does not support queries against JSON columns.
+     */
+    const TESTING_DB = 'antvel_testing';
+
+    /**
      * Setup the test environment
      *
      * @return void

@@ -15,13 +15,14 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Builder;
+use Antvel\Product\Features\FeaturesRepository;
 
 class QueryFilter
 {
 	/**
      * The request information.
      *
-     * @var Illuminate\Http\Request
+     * @var array
      */
     protected $request = null;
 
@@ -38,7 +39,8 @@ class QueryFilter
 		'min' => Filters\Prices::class,
         'max' => Filters\Prices::class,
         'inactives' => Filters\Inactives::class,
-		'low_stock' => Filters\LowStock::class,
+        'low_stock' => Filters\LowStock::class,
+		'features' => Filters\Features::class,
 	];
 
     /**
@@ -51,9 +53,6 @@ class QueryFilter
     public function __construct(array $request)
     {
         $this->request = $this->parseRequest($request);
-
-        // dd('__construct', $this->request, $request);
-        // $this->request['search'] = 'Seeded'; //while testing
     }
 
     /**
@@ -65,13 +64,38 @@ class QueryFilter
      */
     protected function parseRequest(array $request) : array
     {
-    	$allowed = Collection::make($this->allowed)->keys()->all();
+        $request = Collection::make($request);
 
-        return Collection::make($request)->filter(function($item) {
-            return ! is_null($item);
-        })->only($allowed)->all();
+        $allowed = $request->filter(function ($item) {
+            return trim($item) != '';
+        })->intersectKey($this->allowed);
+
+        if ($filterable = $this->allowedFeatures($request)) {
+            $allowed['features'] = $filterable;
+        }
+
+        return $allowed->all();
     }
 
+    /**
+     * Returns an array with the allowed features.
+     *
+     * @param  Collection $request
+     *
+     * @return array
+     */
+    public function allowedFeatures(Collection $request) : array
+    {
+        return $request->filter(function ($item, $key) {
+            return trim($item) != '' && (new FeaturesRepository)->filterable()->pluck('name')->contains($key);
+        })->all();
+    }
+
+    /**
+     * Returns the parsed incoming request.
+     *
+     * @return array
+     */
     public function getRequest()
     {
         return $this->request;
@@ -88,9 +112,7 @@ class QueryFilter
     {
         if ($this->hasRequest()) {
             foreach ($this->request as $filter => $value) {
-                if ($this->isQueryableBy($filter)) {
-        			$builder = $this->resolveQueryFor($builder, $filter);
-        		}
+                $this->resolveQueryFor($builder, $filter);
         	}
         }
 
@@ -102,21 +124,9 @@ class QueryFilter
      *
      * @return boolean
      */
-    protected function hasRequest() : bool
+    public function hasRequest() : bool
     {
         return count($this->request) > 0;
-    }
-
-    /**
-     * Checks whether a given filter can query.
-     *
-     * @param  string $filter
-     *
-     * @return bool
-     */
-    protected function isQueryableBy($filter) : bool
-    {
-    	return !! isset($this->allowed[$filter]) && method_exists($this->allowed[$filter], 'query');
     }
 
     /**
@@ -131,7 +141,9 @@ class QueryFilter
     {
         $factory = $this->allowed[$filter];
 
-        $input = $this->wantsByPrices($filter) ? $this->prices() : $this->request[$filter];
+        $input = $this->wantsByPrices($filter)
+            ? $this->prices()
+            : $this->request[$filter];
 
     	return (new $factory($input, $builder))->query();
     }
@@ -145,7 +157,7 @@ class QueryFilter
      */
     protected function wantsByPrices(string $filter) : bool
     {
-        return $filter == 'min' || $filter == 'max';
+        return in_array($filter, ['min', 'max']);
     }
 
     /**

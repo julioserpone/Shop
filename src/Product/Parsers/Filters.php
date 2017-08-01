@@ -11,10 +11,10 @@
 
 namespace Antvel\Product\Parsers;
 
-use Antvel\Product\Features;
 use Illuminate\Support\Collection;
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\Cache;
+use Antvel\Product\Features\FeaturesRepository;
 
 class Filters
 {
@@ -56,8 +56,7 @@ class Filters
 		$cacheExpiration = 43800; //one month
 
 		return Cache::remember('product_features_filterable', $cacheExpiration, function () {
-			return Container::getInstance()->make(Features::class)
-				->filterable()
+			return (new FeaturesRepository)->filterable()
 				->pluck('name')
 				->all();
 		});
@@ -119,7 +118,7 @@ class Filters
 	 */
 	protected function forFeatures() : array
 	{
-        return Collection::make($this->allowed)->mapWithKeys(function ($feature) {
+		return Collection::make($this->allowed)->mapWithKeys(function ($feature) {
         	return [
         		$feature => array_count_values($this->features()[$feature])
         	];

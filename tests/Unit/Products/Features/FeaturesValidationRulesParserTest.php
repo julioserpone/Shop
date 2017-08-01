@@ -12,14 +12,14 @@
 namespace Antvel\Tests\Unit\Products\Features;
 
 use Antvel\Tests\TestCase;
-use Antvel\Product\Parsers\FeaturesValidationRulesParser;
+use Antvel\Product\Features\ValidationRulesParser;
 
 class FeaturesValidationRulesParserTest extends TestCase
 {
 	/** @test */
 	function it_parses_the_feature_input_validation_rules()
 	{
-		$rules = FeaturesValidationRulesParser::parse([
+		$rules = ValidationRulesParser::parse([
 			'name' => 'foo',
 			'required' => 1,
 			'max' => 20,
@@ -33,7 +33,7 @@ class FeaturesValidationRulesParserTest extends TestCase
 	/** @test */
 	function it_retrieves_the_feature_validations_rules()
 	{
-		$rules = FeaturesValidationRulesParser::decode('required|max:20|min:10');
+		$rules = ValidationRulesParser::decode('required|max:20|min:10');
 
 		$this->assertTrue($rules->all()->contains('required'));
 		$this->assertTrue($rules->all()->contains('max:20'));
@@ -44,7 +44,7 @@ class FeaturesValidationRulesParserTest extends TestCase
 	/** @test */
 	function it_is_able_to_expose_the_allowed_validation_rules()
 	{
-		$allowed = FeaturesValidationRulesParser::allowed();
+		$allowed = ValidationRulesParser::allowed();
 
 		$this->assertTrue($allowed->contains('required'));
 		$this->assertTrue($allowed->contains('max'));
@@ -55,7 +55,7 @@ class FeaturesValidationRulesParserTest extends TestCase
 	/** @test */
 	function it_can_parse_a_null_rules()
 	{
-	    $rules = FeaturesValidationRulesParser::parse(null);
+	    $rules = ValidationRulesParser::parse(null);
 
 	   	$this->assertCount(0, $rules->all());
 	    $this->assertNull($rules->toString());
@@ -64,7 +64,7 @@ class FeaturesValidationRulesParserTest extends TestCase
 	/** @test */
 	function it_can_decode_a_false_rules()
 	{
-		$rules = FeaturesValidationRulesParser::decode('');
+		$rules = ValidationRulesParser::decode('');
 
 	    $this->assertNull($rules->toString());
 	    $this->assertCount(0, $rules->all());

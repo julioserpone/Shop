@@ -17,7 +17,7 @@ use Antvel\Categories\Categories;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
 
-class Category
+class Category implements FilterContract
 {
 	/**
 	 * The categories repository.

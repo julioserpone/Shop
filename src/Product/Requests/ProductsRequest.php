@@ -12,10 +12,10 @@
 namespace Antvel\Product\Requests;
 
 use Antvel\Http\Request;
-use Antvel\Product\Features;
 use Antvel\Product\Attributes;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
+use Antvel\Product\Features\FeaturesRepository;
 
 class ProductsRequest extends Request
 {
@@ -78,7 +78,7 @@ class ProductsRequest extends Request
      */
     protected function rulesForFeatures() : array
     {
-        return $this->container->make(Features::class)->filterableValidationRules();
+        return (new FeaturesRepository)->filterableValidationRules();
     }
 
     /**

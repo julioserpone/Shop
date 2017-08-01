@@ -13,9 +13,9 @@ namespace Antvel\Product;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
-use Antvel\Product\Features;
 use Antvel\Categories\Categories;
 use Illuminate\Support\Facades\Auth;
+use Antvel\Product\Models\ProductFeatures;
 use Antvel\Product\Requests\ProductsRequest;
 use Antvel\Support\Images\Manager as Images;
 
@@ -97,11 +97,11 @@ class Products2Controller extends Controller
 	 * Show the creating form.
 	 *
 	 * @param  Categories $categories
-	 * @param  Features $features
+	 * @param  ProductFeatures $features
 	 *
 	 * @return void
 	 */
-	public function create(Categories $categories, Features $features)
+	public function create(Categories $categories, ProductFeatures $features)
 	{
 		return view('dashboard.sections.products.create', [
 			'conditions' => Attributes::make('condition')->get(),
@@ -134,11 +134,11 @@ class Products2Controller extends Controller
 	 *
 	 * @param  Models\Product $item
 	 * @param  Categories $categories
-	 * @param  Features $features
+	 * @param  ProductFeatures $features
 	 *
 	 * @return void
 	 */
-	public function edit(Models\Product $item, Categories $categories, Features $features)
+	public function edit(Models\Product $item, Categories $categories, ProductFeatures $features)
 	{
 		return view('dashboard.sections.products.edit', [
 			'MAX_PICS' => Images::MAX_PICS - $item->pictures->count(),

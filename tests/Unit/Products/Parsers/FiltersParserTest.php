@@ -109,13 +109,13 @@ class FiltersParserTest extends TestCase
 			factory(Product::class)->make(['features' => '{"color": "red", "weight": "116 Mg", "dimensions": "3 X 20 X 23 inch"}']),
 			factory(Product::class)->make(['features' => '{"color": "blue", "weight": "117 Mg", "dimensions": "4 X 21 X 24 inch"}']),
 
-			//this product should not appear in results of these keys are not filterable.
+			//this product should not appear in results because these keys are not filterable.
 			factory(Product::class)->make(['features' => '{"foo": "111", "bar": "222", "biz": "333"}']),
 		]);
 
-		factory('Antvel\Product\Models\ProductFeatures')->create(['name' => 'color', 'filterable' => true]);
-		factory('Antvel\Product\Models\ProductFeatures')->create(['name' => 'weight', 'filterable' => true]);
-		factory('Antvel\Product\Models\ProductFeatures')->create(['name' => 'dimensions', 'filterable' => true]);
+		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'color']);
+		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'weight']);
+		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'dimensions']);
 
 		$filters = Filters::parse($products);
 		$filtersKeys = array_keys($filters);

@@ -128,21 +128,21 @@ class UsersRepositoryTest extends UsersTestCase
 	function it_is_able_to_update_the_signed_in_user_preferences_for_a_given_key()
 	{
 		$user = $this->signIn([
-			'preferences' => '{"my_searches": "foo", "product_shared": "bar", "product_viewed": "biz", "product_purchased": "tar", "product_categories": "99"}'
+			'preferences' => '{"my_searches": "aa", "product_shared": "bb", "product_viewed": "cc", "product_purchased": "dd", "product_categories": "99"}'
 		]);
 
-		$products = factory('Antvel\Product\Models\Product', 2)->create();
+		factory('Antvel\Product\Models\Product')->create(['tags' => 'foo']);
+		factory('Antvel\Product\Models\Product')->create(['tags' => 'bar']);
 
+		$products = \Antvel\Product\Models\Product::get();
 		$user->updatePreferences('my_searches', $products);
 
-		$tags = $products->pluck('tags')->implode(',');
-
-		tap($user->fresh()->preferences, function ($preferences) use ($tags, $products) {
-			$this->assertSame($preferences['my_searches'], $tags . ',foo');
-			$this->assertSame($preferences['product_shared'], 'bar');
-			$this->assertSame($preferences['product_viewed'], 'biz');
-			$this->assertSame($preferences['product_purchased'], 'tar');
-			$this->assertSame($preferences['product_categories'], '99,' . $products->first()->id);
+		tap($user->fresh()->preferences, function ($preferences) use ($products) {
+			$this->assertEquals('foo,bar,aa', $preferences['my_searches']);
+			$this->assertEquals($preferences['product_shared'], 'bb');
+			$this->assertEquals($preferences['product_viewed'], 'cc');
+			$this->assertEquals($preferences['product_purchased'], 'dd');
+			$this->assertEquals($preferences['product_categories'], '99,' . $products->first()->id);
 		});
 	}
 }

@@ -9,43 +9,23 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product;
+namespace Antvel\Product\Features;
 
 use Antvel\Http\Controller;
 use Antvel\Product\Models\ProductFeatures;
 use Antvel\Product\Requests\FeaturesRequest;
-use Antvel\Product\Parsers\FeaturesValidationRulesParser;
 
 class FeaturesController extends Controller
 {
 	/**
-	 * The features repository.
-	 *
-	 * @var Features
-	 */
-	protected $features = null;
-
-	/**
-	 * Creates a new instance.
-	 *
-	 * @param Features $features
-	 *
-	 * @return void
-	 */
-	public function __construct(Features $features)
-	{
-		$this->features = $features;
-	}
-
-	/**
-     * Shows categories list.
+     * Shows features list.
      *
      * @return void
      */
 	public function index()
 	{
         return view('dashboard.sections.features.index', [
-        	'features' => $this->features->all()
+            'features' => ProductFeatures::paginate(50)
         ]);
 	}
 
@@ -57,23 +37,21 @@ class FeaturesController extends Controller
     public function create()
     {
     	return view('dashboard.sections.features.create', [
-            'allowed_rules' => FeaturesValidationRulesParser::allowed(),
+            'allowed_rules' => ValidationRulesParser::allowed(),
             'validation_rules' => collect(),
         ]);
     }
 
      /**
-     * Stores a new category.
+     * Stores a new feature.
      *
-     * @param  CategoriesRequest $request
+     * @param  FeaturesRequest $request
      *
      * @return void
      */
     public function store(FeaturesRequest $request)
     {
-        $feature = $this->features->create(
-            $request->all()
-        );
+        $feature = ProductFeatures::create($request->all());
 
         return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }
@@ -88,25 +66,23 @@ class FeaturesController extends Controller
     public function edit(ProductFeatures $feature)
     {
         return view('dashboard.sections.features.edit', [
-            'validation_rules' => FeaturesValidationRulesParser::decode($feature->validation_rules)->all(),
-            'allowed_rules' => FeaturesValidationRulesParser::allowed(),
+            'validation_rules' => ValidationRulesParser::decode($feature->validation_rules)->all(),
+            'allowed_rules' => ValidationRulesParser::allowed(),
             'feature' => $feature,
         ]);
     }
 
     /**
-     * Updates the given category.
+     * Updates the given feature.
      *
-     * @param  CategoriesRequest $request
-     * @param  Category $category
+     * @param  FeaturesRequest $request
+     * @param  ProductFeatures $feature
      *
      * @return void
      */
     public function update(FeaturesRequest $request, ProductFeatures $feature)
     {
-        $this->features->update(
-            $request->all(), $feature
-        );
+        $feature->update($request->all());
 
         return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }

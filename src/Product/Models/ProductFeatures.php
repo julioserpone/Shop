@@ -12,6 +12,7 @@
 namespace Antvel\Product\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Antvel\Product\Features\ValidationRulesParser;
 
 class ProductFeatures extends Model
 {
@@ -39,4 +40,46 @@ class ProductFeatures extends Model
         'validation_rules', 'help_message', 'status',
         'filterable'
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'filterable' => 'boolean',
+        'status' => 'boolean',
+    ];
+
+    /**
+     * Set the validation_rules with the given value.
+     *
+     * @param  array|string  $value
+     *
+     * @return void
+     */
+    public function setValidationRulesAttribute($value)
+    {
+       //If the passed value is a string, we assume the request wants to save a validation
+       //string. Otherwise, we parse the array given to build such a string.
+        if (is_string($value)) {
+            $this->attributes['validation_rules'] = $value;
+        }
+
+        else {
+            $this->attributes['validation_rules'] = ValidationRulesParser::parse($value)->toString();
+        }
+    }
+
+    /**
+     * Exposes the features allowed to be in the products filtering.
+     *
+     * @param  Illuminate\Database\Eloquent\Builder $query
+     *
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFilterable($query)
+    {
+        return $query->where('status', true)->where('filterable', true);
+    }
 }

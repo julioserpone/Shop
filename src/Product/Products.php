@@ -43,7 +43,7 @@ class Products extends Repository
         $attributes = Collection::make($attributes);
 
         $attr = $attributes->except('features', 'pictures')->merge([
-            'features' => FeaturesParser::parse($attributes->get('features')),
+            'features' => Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,
@@ -75,7 +75,7 @@ class Products extends Repository
     	$attributes = Collection::make($attributes);
 
     	$attr = $attributes->except('features', 'pictures', 'default_picture')->merge([
-            'features' => FeaturesParser::parse($attributes->get('features')),
+            'features' => Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,
@@ -101,7 +101,7 @@ class Products extends Repository
 	{
 		return $this->getModel()
 			->with('category')
-			->actives()
+			->actives() //it needs to go into the query object as well
 			->filter($request)
 			->orderBy('rate_val', 'desc');
 	}

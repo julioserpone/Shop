@@ -13,7 +13,7 @@ namespace Antvel\Product\Models\Filters;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class Brands
+class Brands implements FilterContract
 {
 	/**
 	 * The requested brand.

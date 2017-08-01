@@ -20,7 +20,7 @@ trait Environment
      */
     protected function loadMigrations()
     {
-        $this->artisan('migrate');
+        $this->artisan('migrate:refresh');
     }
 
     /**
@@ -96,5 +96,30 @@ trait Environment
             'filesystems.disks.local.root',
             __DIR__ . '/../../storage/framework/testing/disks'
         );
+    }
+
+    /**
+     * Set the test to be run using MySQL.
+     *
+     * @return void
+     */
+    protected function usingMySql()
+    {
+        $this->app->make('config')->set('database.default', self::TESTING_DB);
+        $this->app->make('config')->set('database.connections.' . self::TESTING_DB, [
+            'driver' => 'mysql',
+            'host' => 'localhost',
+            'port' => '3306',
+            'database' => self::TESTING_DB,
+            'username' => 'root',
+            'password' => 'secret',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ]);
+
+        $this->loadMigrations();
     }
 }
