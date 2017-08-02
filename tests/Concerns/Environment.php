@@ -112,7 +112,7 @@ trait Environment
             'port' => '3306',
             'database' => self::TESTING_DB,
             'username' => 'root',
-            'password' => '',
+            'password' => getenv('TRAVIS') ? '' : 'secret',
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',

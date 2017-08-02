@@ -200,8 +200,11 @@ class PreferencesParser
 	{
 		$ids = explode(',', $this->preferences['product_categories']);
 
-		$categories = Collection::make($ids)->merge($data)->unique()
-			->take(self::MAX_TAGS)->implode(',');
+		$categories = Collection::make($ids)
+			->merge($data)
+			->unique()
+			->take(self::MAX_TAGS)
+			->implode(',');
 
 		$this->preferences['product_categories'] = trim($categories, ',');
 	}

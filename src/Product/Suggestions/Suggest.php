@@ -116,7 +116,7 @@ class Suggest
 	 */
 	public function shake()
 	{
-		return $this->keys->flatMap(function ($preferenceKey, $aaa) {
+		return $this->keys->flatMap(function ($preferenceKey) {
 
 			$products[$preferenceKey] = is_string($preferenceKey) ? $this->suggestFor($preferenceKey) : new Collection;
 
@@ -179,10 +179,9 @@ class Suggest
 			->take($this->limit)
 			->get();
 
+
 		if ($suggestions->count() < $this->limit) {
-			$suggestions = $suggestions->merge(
-				$this->completeWithRandomProducts($suggestions)
-			);
+			$suggestions = $suggestions->merge($this->completeWithRandomProducts($suggestions));
 		}
 
 		$this->excluding($suggestions);
