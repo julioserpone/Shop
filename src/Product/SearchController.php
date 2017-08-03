@@ -13,7 +13,7 @@ namespace Antvel\Product;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
-use Antvel\Categories\Categories;
+use Antvel\Categories\CategoriesRepository;
 
 class SearchController extends Controller
 {
@@ -24,13 +24,6 @@ class SearchController extends Controller
 	 */
 	protected $products = null;
 
-	/**
-	 * The categories repository.
-	 *
-	 * @var Categories
-	 */
-	protected $categories = null;
-
     /**
      * Creates a new instance.
      *
@@ -38,10 +31,9 @@ class SearchController extends Controller
      *
      * @return void
      */
-	public function __construct(Products $products, Categories $categories)
+	public function __construct(Products $products)
 	{
 		$this->products = $products;
-		$this->categories = $categories;
 	}
 
 	/**
@@ -57,10 +49,10 @@ class SearchController extends Controller
 		], 4)->get();
 
 		//filter categories by the given query.
-		$response['products']['categories'] = $this->categories->havingProducts([
+		$response['products']['categories'] = (new CategoriesRepository)->categoriesWithProducts([
 			'name' => $request->get('q'),
 			'description' => $request->get('q'),
-		], ['id', 'name'], 4);
+		], 4, ['id', 'name']);
 
 		$response['products']['suggestions'] = Suggestions\Suggest::for('my_searches')->shake()->get('my_searches');
 

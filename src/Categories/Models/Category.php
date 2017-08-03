@@ -13,10 +13,13 @@ namespace Antvel\Categories\Models;
 
 use Antvel\User\Models\User;
 use Antvel\Product\Models\Product;
+use Antvel\Support\Images\Uploadable;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+    use Uploadable;
+
 	/**
      * The database table.
      *
@@ -31,8 +34,18 @@ class Category extends Model
      */
     protected $fillable = [
     	'category_id', 'name', 'description', 'icon',
-        'image', 'status', 'type',
+        'image', 'status', 'type', 'pictures'
     ];
+
+    /**
+     * Return the model storage folder.
+     *
+     * @return string
+     */
+    protected function storageFolder()
+    {
+        return 'images/categories/' . $this->id;
+    }
 
     /**
      * A category belongs to an user.
@@ -61,7 +74,7 @@ class Category extends Model
      */
     public function parent()
     {
-        return $this->hasOne(Category::class, 'id', 'category_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
     /**
@@ -75,15 +88,15 @@ class Category extends Model
     }
 
     /**
-     * Applies a light columns selection to the given query.
+     * Returns the parents categories.
      *
-     * @param \Illuminate\Database\Query\Builder $query
+     * @param  \Illuminate\Database\Query\Builder $query
      *
      * @return \Illuminate\Database\Query\Builder
      */
-    public function scopeLightSelection($query)
+    public function scopeParents($query)
     {
-        return $query->select('categories.id', 'categories.name', 'categories.category_id');
+        $query->whereNull('category_id')->orderBy('name');
     }
 
     /**

@@ -13,19 +13,12 @@ namespace Antvel\Product\Models\Filters;
 
 use Cache;
 use Illuminate\Support\Arr;
-use Antvel\Categories\Categories;
 use Illuminate\Container\Container;
 use Illuminate\Database\Eloquent\Builder;
+use Antvel\Categories\CategoriesRepository;
 
 class Category implements FilterContract
 {
-	/**
-	 * The categories repository.
-	 *
-	 * @var Categories
-	 */
-	protected $categories = null;
-
 	/**
 	 * The Illuminate eloquent builder.
 	 *
@@ -58,7 +51,6 @@ class Category implements FilterContract
 	{
 		$this->parseInput($input);
 		$this->builder = $builder;
-		$this->categories = Container::getInstance()->make(Categories::class);
 	}
 
 	/**
@@ -106,9 +98,7 @@ class Category implements FilterContract
 	protected function children() : array
 	{
 		$categories = Cache::remember($this->cache_key(), 15, function () {
-			return $this->categories->children(
-	            $this->category_id, ['id', 'category_id', 'name']
-	        );
+			return (new CategoriesRepository)->childrenOf($this->category_id, 50, ['id', 'category_id', 'name']);
 		});
 
 		return $categories->pluck('id')->unique()

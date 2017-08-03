@@ -13,6 +13,7 @@ namespace Antvel\Tests;
 
 use Antvel\Antvel;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Illuminate\Foundation\Testing\TestResponse;
 
 abstract class TestCase extends Orchestra
 {
