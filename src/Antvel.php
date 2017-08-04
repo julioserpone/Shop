@@ -11,7 +11,6 @@
 
 namespace Antvel;
 
-use Illuminate\Container\Container;
 use Antvel\Http\Routes\AntvelRouter;
 use Illuminate\Support\Facades\Route;
 
@@ -22,23 +21,31 @@ class Antvel
      *
      * @var string
      */
-    const VERSION = '1.2.4';
+    const VERSION = '1.2.5';
 
     /**
-     * The Laravel container component.
+     * All of the service bindings for Antvel.
      *
-     * @var Container
+     * @return array
      */
-    protected $container = null;
-
-    /**
-     * Creates a new instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public static function bindings()
     {
-        $this->container = Container::getInstance();
+        return [
+            Contracts\CategoryRepositoryContract::class => Categories\Repositories\CategoriesRepository::class,
+        ];
+    }
+
+    /**
+     * All of the service aliases for Antvel.
+     *
+     * @return array
+     */
+    public static function alias()
+    {
+        return [
+            'category.repository' => Categories\Repositories\CategoriesRepository::class,
+            'category.repository.cahe' => Categories\Repositories\CategoriesRepositoryCache::class,
+        ];
     }
 
     /**

@@ -11,11 +11,9 @@
 
 namespace Antvel\Product\Models\Filters;
 
-use Cache;
 use Illuminate\Support\Arr;
-use Illuminate\Container\Container;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
-use Antvel\Categories\CategoriesRepository;
 
 class Category implements FilterContract
 {
@@ -97,22 +95,11 @@ class Category implements FilterContract
 	 */
 	protected function children() : array
 	{
-		$categories = Cache::remember($this->cache_key(), 15, function () {
-			return (new CategoriesRepository)->childrenOf($this->category_id, 50, ['id', 'category_id', 'name']);
-		});
+		$categories = App::make('category.repository.cahe')
+			->childrenOf($this->category_id, 50, ['id', 'category_id', 'name']);
 
 		return $categories->pluck('id')->unique()
         	->prepend((int) $this->category_id)
         	->all();
-	}
-
-	/**
-	 * Returns the filter cache key.
-	 *
-	 * @return string
-	 */
-	protected function cache_key() : string
-	{
-		return 'fitered_by_category_' . $this->category_id;
 	}
 }

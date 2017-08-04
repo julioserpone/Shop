@@ -13,7 +13,6 @@ namespace Antvel\Product;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
-use Antvel\Categories\CategoriesRepository;
 
 class SearchController extends Controller
 {
@@ -49,7 +48,7 @@ class SearchController extends Controller
 		], 4)->get();
 
 		//filter categories by the given query.
-		$response['products']['categories'] = (new CategoriesRepository)->categoriesWithProducts([
+		$response['products']['categories'] = app('category.repository.cahe')->categoriesWithProducts([
 			'name' => $request->get('q'),
 			'description' => $request->get('q'),
 		], 4, ['id', 'name']);

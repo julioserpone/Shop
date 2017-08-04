@@ -11,7 +11,6 @@
 
 namespace Antvel;
 
-use Antvel\Http\Middleware\Managers;
 use Illuminate\Support\ServiceProvider;
 
 class AntvelServiceProvider extends ServiceProvider
@@ -34,7 +33,45 @@ class AntvelServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app['router']->aliasMiddleware('managers', Managers::class);
+        $this->registerServices();
+        $this->registerMiddlewares();
+        $this->registerServicesAliases();
+    }
+
+    /**
+     * Register Antvel services in the container.
+     *
+     * @return void
+     */
+    protected function registerServices()
+    {
+        foreach (Antvel::bindings() as $key => $value) {
+            is_numeric($key)
+                ? $this->app->singleton($value)
+                : $this->app->singleton($key, $value);
+        }
+    }
+
+    /**
+     * Register Antvel middlewares.
+     *
+     * @return void
+     */
+    protected function registerMiddlewares()
+    {
+        $this->app['router']->aliasMiddleware('managers', Http\Middleware\Managers::class);
+    }
+
+    /**
+     * Register Antvel services aliases in the container.
+     *
+     * @return void
+     */
+    protected function registerServicesAliases()
+    {
+        foreach (Antvel::alias() as $key => $value) {
+            $this->app->alias($value, $key);
+        }
     }
 
     /**

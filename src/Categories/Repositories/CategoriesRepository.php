@@ -9,9 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Categories;
+namespace Antvel\Categories\Repositories;
 
-class CategoriesRepository
+use Antvel\Categories\Models\Category;
+use Antvel\Contracts\CategoryRepositoryContract;
+
+class CategoriesRepository implements CategoryRepositoryContract
 {
     /**
      * Returns the categories with products filtered by the given request.
@@ -24,7 +27,7 @@ class CategoriesRepository
      */
     public function categoriesWithProducts(array $request = [], $limit = 10, $columns = '*')
     {
-        $categories = Models\Category::whereHas('products', function($query) {
+        $categories = Category::whereHas('products', function($query) {
             return $query->actives();
         });
 
@@ -45,7 +48,7 @@ class CategoriesRepository
      */
     public function childrenOf($category_id, int $limit = 50, $columns = 'id')
     {
-        return Models\Category::select($columns)->with('children')
+        return Category::select($columns)->with('children')
             ->where('category_id', $category_id)
             ->orderBy('updated_at', 'desc')
             ->take($limit)
