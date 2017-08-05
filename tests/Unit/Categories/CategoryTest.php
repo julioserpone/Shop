@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit;
+namespace Antvel\Tests\Unit\Categories;
 
 use Antvel\Tests\TestCase;
 use Antvel\Categories\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
-class CategoriesTest extends TestCase
+class CategoryTest extends TestCase
 {
 	/** @test */
 	function a_category_has_children()

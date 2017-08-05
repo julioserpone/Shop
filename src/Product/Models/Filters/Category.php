@@ -77,12 +77,8 @@ class Category implements FilterContract
 			return $this->builder;
 		}
 
-		$children = $this->children();
-
-		if (count($children) > 0) {
-			$this->builder->whereIn(
-				'category_id', $children
-			);
+		if (count($children = $this->children()) > 0) {
+			$this->builder->whereIn('category_id', $children);
 		}
 
 		return $this->builder;
@@ -95,8 +91,9 @@ class Category implements FilterContract
 	 */
 	protected function children() : array
 	{
-		$categories = App::make('category.repository.cahe')
-			->childrenOf($this->category_id, 50, ['id', 'category_id', 'name']);
+		$categories = App::make('category.repository.cahe')->childrenOf($this->category_id, 50, [
+			'id', 'category_id', 'name'
+		]);
 
 		return $categories->pluck('id')->unique()
         	->prepend((int) $this->category_id)

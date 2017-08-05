@@ -11,6 +11,7 @@
 
 namespace Antvel\Categories\Models;
 
+use Illuminate\Support\Arr;
 use Antvel\User\Models\User;
 use Antvel\Product\Models\Product;
 use Antvel\Support\Images\Uploadable;
@@ -121,6 +122,8 @@ class Category extends Model
      */
     public function scopeFilter($query, $request)
     {
+        $request = Arr::only($request, ['name', 'description']);
+
         $query->actives()->where(function ($query) use ($request) {
             foreach ($request as $key => $value) {
                 $query->orWhere($key, 'like', '%' . $value . '%');

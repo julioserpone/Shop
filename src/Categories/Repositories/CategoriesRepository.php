@@ -46,7 +46,7 @@ class CategoriesRepository implements CategoryRepositoryContract
      *
      * @return \Illuminate/Database/Eloquent/Collection
      */
-    public function childrenOf($category_id, int $limit = 50, $columns = 'id')
+    public function childrenOf($category_id, int $limit = 50, $columns = '*')
     {
         return Category::select($columns)->with('children')
             ->where('category_id', $category_id)
