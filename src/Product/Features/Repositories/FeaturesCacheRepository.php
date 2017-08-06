@@ -50,7 +50,7 @@ class FeaturesCacheRepository implements FeaturesRepositoryContract
      */
     public function filterable($limit = 5)
     {
-        $key = md5(vsprintf('%s.%s', [time(), 'filterable_features']));
+        $key = md5(vsprintf('%s', ['filterable_features']));
 
         return Cache::remember($key, $this->remembering, function () use ($limit) {
             return $this->next->filterable($limit);
@@ -64,7 +64,7 @@ class FeaturesCacheRepository implements FeaturesRepositoryContract
      */
     public function filterableValidationRules() : array
     {
-        $key = md5(vsprintf('%s.%s', [time(), 'features_validationRules']));
+        $key = md5(vsprintf('%s', ['features_validationRules']));
 
         return Cache::remember($key, $this->remembering, function () {
             return $this->next->filterableValidationRules();

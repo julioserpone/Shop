@@ -44,7 +44,7 @@ class CategoriesCacheRepository implements CategoryRepositoryContract
      */
     public function categoriesWithProducts(array $request = [], $limit = 10, $columns = '*')
     {
-        $key = md5(vsprintf('%s.%s', [time(), 'with_products']));
+        $key = md5(vsprintf('%s', ['categories_with_products']));
 
         return Cache::remember($key, 25, function () use ($request, $limit, $columns) {
             return $this->next->categoriesWithProducts($request, $limit, $columns);
@@ -62,7 +62,7 @@ class CategoriesCacheRepository implements CategoryRepositoryContract
      */
     public function childrenOf($category_id, int $limit = 50, $columns = 'id')
     {
-        $key = md5(vsprintf('%s.%s', [time(), 'children_of']));
+        $key = md5(vsprintf('%s', ['children_of_category']));
 
         return Cache::remember($key, 25, function () use ($category_id, $limit, $columns) {
             return $this->next->childrenOf($category_id, $limit, $columns);
