@@ -14,8 +14,8 @@ namespace Antvel\Product\Models;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
-use Antvel\Product\Features\FeaturesRepository;
 
 class QueryFilter
 {
@@ -87,8 +87,20 @@ class QueryFilter
     public function allowedFeatures(Collection $request) : array
     {
         return $request->filter(function ($item, $key) {
-            return trim($item) != '' && (new FeaturesRepository)->filterable()->pluck('name')->contains($key);
+            return trim($item) != '' && $this->isFilterable($key);
         })->all();
+    }
+
+    /**
+     * Checks whether a given feature is filterable.
+     *
+     * @param  string $key
+     *
+     * @return bool
+     */
+    protected function isFilterable($key) : bool
+    {
+        return App::make('product.features.repository.cahe')->filterable()->pluck('name')->contains($key);
     }
 
     /**

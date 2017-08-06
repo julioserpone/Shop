@@ -13,7 +13,7 @@ namespace Antvel\Tests\Unit\Products\Features;
 
 use Antvel\Tests\TestCase;
 use Antvel\Product\Models\ProductFeatures;
-use Antvel\Product\Features\FeaturesRepository;
+use Antvel\Product\Features\Repositories\FeaturesRepository;
 
 class FeaturesRepositoryTest extends TestCase
 {

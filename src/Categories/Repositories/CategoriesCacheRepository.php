@@ -14,7 +14,7 @@ namespace Antvel\Categories\Repositories;
 use Illuminate\Support\Facades\Cache;
 use Antvel\Contracts\CategoryRepositoryContract;
 
-class CategoriesRepositoryCache implements CategoryRepositoryContract
+class CategoriesCacheRepository implements CategoryRepositoryContract
 {
     /**
      * The Antvel category repository implementation.

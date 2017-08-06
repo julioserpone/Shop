@@ -9,11 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Features;
+namespace Antvel\Product\Features\Repositories;
 
 use Antvel\Product\Models\ProductFeatures;
+use Antvel\Contracts\FeaturesRepositoryContract;
 
-class FeaturesRepository
+class FeaturesRepository implements FeaturesRepositoryContract
 {
     /**
      * Exposes the features allowed to be in the products filtering.

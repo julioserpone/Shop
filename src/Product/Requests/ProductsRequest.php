@@ -15,7 +15,7 @@ use Antvel\Http\Request;
 use Antvel\Product\Attributes;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
-use Antvel\Product\Features\FeaturesRepository;
+use Antvel\Product\Features\Repositories\FeaturesRepository;
 
 class ProductsRequest extends Request
 {

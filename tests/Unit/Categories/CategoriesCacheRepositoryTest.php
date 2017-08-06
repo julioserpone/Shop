@@ -14,9 +14,9 @@ namespace Antvel\Tests\Unit\Categories;
 use Mockery as m;
 use Antvel\Tests\TestCase;
 use Antvel\Contracts\CategoryRepositoryContract;
-use Antvel\Categories\Repositories\CategoriesRepositoryCache;
+use Antvel\Categories\Repositories\CategoriesCacheRepository;
 
-class CategoriesRepositoryCacheTest extends TestCase
+class CategoriesCacheRepositoryTest extends TestCase
 {
 	protected function tearDown()
 	{
@@ -31,7 +31,7 @@ class CategoriesRepositoryCacheTest extends TestCase
 
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesRepositoryCache::class)->categoriesWithProducts();
+		$this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts();
 	}
 
 	/** @test */
@@ -42,7 +42,7 @@ class CategoriesRepositoryCacheTest extends TestCase
 
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesRepositoryCache::class)->categoriesWithProducts([
+		$this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts([
 			'name' => 'acc',
 			'description' => 'ar',
 		]);
@@ -56,6 +56,6 @@ class CategoriesRepositoryCacheTest extends TestCase
 
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesRepositoryCache::class)->childrenOf(1);
+		$this->app->make(CategoriesCacheRepository::class)->childrenOf(1);
 	}
 }
