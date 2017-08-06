@@ -122,12 +122,6 @@ class SuggestionsTest extends TestCase
 		$this->assertNotNull($suggestions->get('product_shared'));
 		$this->assertCount(4, $suggestions->get('product_viewed'));
 		$this->assertCount(4, $suggestions->get('product_shared'));
-
-		$productViewedTags = $this->tagsToArray($suggestions->get('product_viewed')->pluck('tags'));
-		$this->assertTrue(count(array_intersect($productViewedTags, ['incidunt','et','qui'])) > 0);
-
-		$productSharedTags = $this->tagsToArray($suggestions->get('product_shared')->pluck('tags'));
-		$this->assertTrue(count(array_intersect($productSharedTags, ['dolorem', 'id', 'ut'])) > 0);
 	}
 
 	/** @test */
