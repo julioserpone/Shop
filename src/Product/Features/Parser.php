@@ -32,4 +32,26 @@ class Parser
 			return trim($item) != '';
 		})->toJson();
 	}
+
+	/**
+	 * Replaces the given key for another in the provided products features collection.
+	 *
+	 * @param  Collection $products
+	 * @param  string $oldKey
+	 * @param  string $newKey
+	 *
+	 * @return Collection
+	 */
+	public static function replaceTheGivenKeyFor($products, $oldKey, $newKey) : array
+	{
+		return $products->mapWithKeys(function ($item) use ($oldKey, $newKey) {
+
+			$features = $item->features;
+
+			$features[$newKey] = $features[$oldKey];
+			unset($features[$oldKey]);
+
+			return [$item->id => $features];
+		})->all();
+	}
 }

@@ -60,8 +60,8 @@ class ProductFeatures extends Model
      */
     public function setValidationRulesAttribute($value)
     {
-       //If the passed value is a string, we assume the request wants to save a validation
-       //string. Otherwise, we parse the array given to build such a string.
+        //If the passed value is a string, we assume the request wants to save a validation
+        //string. Otherwise, we parse the array given to build such a string.
         if (is_string($value)) {
             $this->attributes['validation_rules'] = $value;
         }
