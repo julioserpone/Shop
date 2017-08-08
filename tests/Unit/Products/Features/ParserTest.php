@@ -13,8 +13,6 @@ namespace Antvel\Tests\Unit\Products\Features;
 
 use Antvel\Tests\TestCase;
 use Antvel\Product\Models\Product;
-use Antvel\Product\Models\ProductFeatures;
-
 use Antvel\Product\Features\Parser;
 
 class ParserTest extends TestCase
