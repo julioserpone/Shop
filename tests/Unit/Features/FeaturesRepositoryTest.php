@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Features;
+namespace Antvel\Tests\Unit\Features;
 
 use Antvel\Tests\TestCase;
-use Antvel\Product\Models\ProductFeatures;
-use Antvel\Product\Features\Repositories\FeaturesRepository;
+use Antvel\Features\Models\Feature;
+use Antvel\Features\Repositories\FeaturesRepository;
 
 class FeaturesRepositoryTest extends TestCase
 {
 	/** @test */
 	function exposes_the_filterable_features_that_are_used_in_products_listing()
 	{
-		$notAllowed = factory(ProductFeatures::class)->create(['name' => 'bar']);
-		$allowed = factory(ProductFeatures::class)->states('filterable')->create(['name' => 'foo']);
+		$notAllowed = factory(Feature::class)->create(['name' => 'bar']);
+		$allowed = factory(Feature::class)->states('filterable')->create(['name' => 'foo']);
 
 	    $features = (new FeaturesRepository)->filterable();
 
@@ -36,17 +36,17 @@ class FeaturesRepositoryTest extends TestCase
 	/** @test */
 	function generates_an_array_with_the_validation_rules_for_the_filterable_features()
 	{
-		factory(ProductFeatures::class)->states('filterable')->create([
+		factory(Feature::class)->states('filterable')->create([
 			'name' => 'one',
 			'validation_rules' => 'required|max:20|min:10',
 		]);
 
-		factory(ProductFeatures::class)->states('filterable')->create([
+		factory(Feature::class)->states('filterable')->create([
 			'name' => 'two',
 			'validation_rules' => 'required|min:10',
 		]);
 
-		factory(ProductFeatures::class)->states('filterable')->create([
+		factory(Feature::class)->states('filterable')->create([
 			'name' => 'three',
 			'validation_rules' => 'required',
 		]);

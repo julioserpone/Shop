@@ -172,8 +172,8 @@ class IntegrationTest extends TestCase
 	{
 		$this->usingMySql();
 
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'color']);
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'weight']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
 
 	    factory(Product::class)->create(['name' => 'per', 'features' => '{"color": "red", "weight": "11"}']);
 	    factory(Product::class)->create(['name' => 'foo', 'features' => '{"color": "red", "weight": "11"}']);

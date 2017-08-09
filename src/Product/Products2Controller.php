@@ -15,9 +15,10 @@ use Antvel\Http\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Antvel\Categories\Models\Category;
-use Antvel\Product\Models\ProductFeatures;
 use Antvel\Product\Requests\ProductsRequest;
 use Antvel\Support\Images\Manager as Images;
+
+use Antvel\Features\Models\Feature;
 
 class Products2Controller extends Controller
 {
@@ -96,16 +97,16 @@ class Products2Controller extends Controller
 	/**
 	 * Show the creating form.
 	 *
-	 * @param  ProductFeatures $features
+	 * @param  Feature $features
 	 *
 	 * @return void
 	 */
-	public function create(ProductFeatures $features)
+	public function create(Feature $features)
 	{
 		return view('dashboard.sections.products.create', [
 			'conditions' => Attributes::make('condition')->get(),
+			'features' => $features->filterable()->get(),
 			'categories' => Category::actives()->get(),
-			'features' => $features->filterable(),
 			'MAX_PICS' => Images::MAX_PICS,
 		]);
 	}
@@ -132,17 +133,17 @@ class Products2Controller extends Controller
 	 * Show the editing form.
 	 *
 	 * @param  Models\Product $item
-	 * @param  ProductFeatures $features
+	 * @param  Feature $features
 	 *
 	 * @return void
 	 */
-	public function edit(Models\Product $item, ProductFeatures $features)
+	public function edit(Models\Product $item, Feature $features)
 	{
 		return view('dashboard.sections.products.edit', [
 			'MAX_PICS' => Images::MAX_PICS - $item->pictures->count(),
 			'conditions' => Attributes::make('condition')->get(),
+			'features' => $features->filterable()->get(),
 			'categories' => Category::actives()->get(),
-			'features' => $features->filterable(),
 			'item' => $item,
 		]);
 	}

@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Features;
+namespace Antvel\Features;
 
 use Illuminate\Support\Collection;
 

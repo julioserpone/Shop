@@ -57,7 +57,7 @@ class QueryFilterTest extends TestCase
 	/** @test */
 	function it_is_able_to_parse_the_filterable_features_to_be_used_for_a_given_request()
 	{
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'weight']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
 
 		$query = new QueryFilter(['color' => 'red', 'weight' => '11']);
 

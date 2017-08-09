@@ -25,6 +25,10 @@ class EventsRegistrar
             \Antvel\User\Listeners\UpdateProfile::class,
             \Antvel\User\Listeners\SendNewEmailConfirmation::class,
         ],
+
+        \Antvel\Features\Events\ProductFeatureSaved::class => [
+            \Antvel\Features\Listeners\UpdateFeatureName::class,
+        ],
     ];
 
     /**

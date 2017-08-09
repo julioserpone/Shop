@@ -330,12 +330,12 @@ class ProductsRequestTest extends TestCase
 	/** @test */
 	function it_builds_dynamic_features_rules_based_upon_request()
 	{
-		$featureRequired = factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create([
+		$featureRequired = factory('Antvel\Features\Models\Feature')->states('filterable')->create([
 			'name' => 'featureRequired',
 			'validation_rules' => 'required'
 		]);
 
-		$featureMaxAndMin = factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create([
+		$featureMaxAndMin = factory('Antvel\Features\Models\Feature')->states('filterable')->create([
 			'name' => 'featureMaxAndMin',
 			'validation_rules' => 'max:20|min:10'
 		]);

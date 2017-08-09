@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductFeaturesTable extends Migration
+class CreateFeaturesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -23,7 +23,7 @@ class CreateProductFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('products_features', function (Blueprint $table) {
+        Schema::create('features', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100)->unique();
             $table->enum('input_type', ['text', 'select'])->default('text');
@@ -43,6 +43,6 @@ class CreateProductFeaturesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('products_features');
+        Schema::drop('features');
     }
 }

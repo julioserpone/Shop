@@ -43,7 +43,7 @@ class Products extends Repository
         $attributes = Collection::make($attributes);
 
         $attr = $attributes->except('features', 'pictures')->merge([
-            'features' => Features\Parser::toJson($attributes->get('features')),
+            'features' => \Antvel\Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,
@@ -75,7 +75,7 @@ class Products extends Repository
     	$attributes = Collection::make($attributes);
 
     	$attr = $attributes->except('features', 'pictures', 'default_picture')->merge([
-            'features' => Features\Parser::toJson($attributes->get('features')),
+            'features' => \Antvel\Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,

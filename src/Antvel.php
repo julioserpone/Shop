@@ -32,7 +32,7 @@ class Antvel
     {
         return [
             Contracts\CategoryRepositoryContract::class => Categories\Repositories\CategoriesRepository::class,
-            Contracts\FeaturesRepositoryContract::class => Product\Features\Repositories\FeaturesRepository::class,
+            Contracts\FeaturesRepositoryContract::class => Features\Repositories\FeaturesRepository::class,
         ];
     }
 
@@ -46,8 +46,8 @@ class Antvel
         return [
             'category.repository' => Categories\Repositories\CategoriesRepository::class,
             'category.repository.cahe' => Categories\Repositories\CategoriesCacheRepository::class,
-            'product.features.repository' => Product\Features\Repositories\FeaturesRepository::class,
-            'product.features.repository.cahe' => Product\Features\Repositories\FeaturesCacheRepository::class,
+            'product.features.repository' => Features\Repositories\FeaturesRepository::class,
+            'product.features.repository.cahe' => Features\Repositories\FeaturesCacheRepository::class,
         ];
     }
 

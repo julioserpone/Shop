@@ -9,10 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Features;
+namespace Antvel\Tests\Unit\Features;
 
 use Antvel\Tests\TestCase;
-use Antvel\Product\Features\ValidationRulesParser;
+use Antvel\Features\ValidationRulesParser;
 
 class FeaturesValidationRulesParserTest extends TestCase
 {

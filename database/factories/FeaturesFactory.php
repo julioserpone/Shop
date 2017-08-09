@@ -11,9 +11,9 @@
 
 
 use Faker\Generator as Faker;
-use Antvel\Product\Models\ProductFeatures;
+use Antvel\Features\Models\Feature;
 
-$factory->define(ProductFeatures::class, function (Faker $faker) use ($factory)
+$factory->define(Feature::class, function (Faker $faker) use ($factory)
 {
     return [
         'product_type'  => 'item',
@@ -26,7 +26,7 @@ $factory->define(ProductFeatures::class, function (Faker $faker) use ($factory)
     ];
 });
 
-$factory->state(ProductFeatures::class, 'filterable', function ($faker) {
+$factory->state(Feature::class, 'filterable', function ($faker) {
     return [
         'validation_rules' => null,
         'name' => 'Filterable Name',

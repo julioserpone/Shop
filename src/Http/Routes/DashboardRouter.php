@@ -74,7 +74,7 @@ class DashboardRouter implements ComponentRouter
 	 */
 	protected function forProductsFeatures($router)
 	{
-		$router->resource('features', 'Product\Features\FeaturesController');
+		$router->resource('features', 'Features\FeaturesController');
 	}
 
 	/**

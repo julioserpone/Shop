@@ -9,9 +9,9 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Features\Repositories;
+namespace Antvel\Features\Repositories;
 
-use Antvel\Product\Models\ProductFeatures;
+use Antvel\Features\Models\Feature;
 use Antvel\Contracts\FeaturesRepositoryContract;
 
 class FeaturesRepository implements FeaturesRepositoryContract
@@ -25,7 +25,7 @@ class FeaturesRepository implements FeaturesRepositoryContract
      */
     public function filterable($limit = 5)
     {
-        return ProductFeatures::filterable()->take($limit)->get();
+        return Feature::filterable()->take($limit)->get();
     }
 
 	/**

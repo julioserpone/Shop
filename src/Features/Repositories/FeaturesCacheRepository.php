@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Features\Repositories;
+namespace Antvel\Features\Repositories;
 
 use Illuminate\Support\Facades\Cache;
 use Antvel\Contracts\FeaturesRepositoryContract;

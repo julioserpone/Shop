@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Features;
+namespace Antvel\Features;
 
 use Antvel\Http\Controller;
-use Antvel\Product\Models\ProductFeatures;
-use Antvel\Product\Requests\FeaturesRequest;
+use Antvel\Features\Models\Feature;
+use Antvel\Features\Requests\FeaturesRequest;
 
 class FeaturesController extends Controller
 {
@@ -25,7 +25,7 @@ class FeaturesController extends Controller
 	public function index()
 	{
         return view('dashboard.sections.features.index', [
-            'features' => ProductFeatures::paginate(50)
+            'features' => Feature::paginate(50)
         ]);
 	}
 
@@ -51,7 +51,7 @@ class FeaturesController extends Controller
      */
     public function store(FeaturesRequest $request)
     {
-        $feature = ProductFeatures::create($request->all());
+        $feature = Feature::create($request->all());
 
         return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }
@@ -59,11 +59,11 @@ class FeaturesController extends Controller
     /**
      * Edits a given category.
      *
-     * @param  ProductFeatures $feature
+     * @param  Feature $feature
      *
      * @return void
      */
-    public function edit(ProductFeatures $feature)
+    public function edit(Feature $feature)
     {
         return view('dashboard.sections.features.edit', [
             'validation_rules' => ValidationRulesParser::decode($feature->validation_rules)->all(),
@@ -76,11 +76,11 @@ class FeaturesController extends Controller
      * Updates the given feature.
      *
      * @param  FeaturesRequest $request
-     * @param  ProductFeatures $feature
+     * @param  Feature $feature
      *
      * @return void
      */
-    public function update(FeaturesRequest $request, ProductFeatures $feature)
+    public function update(FeaturesRequest $request, Feature $feature)
     {
         $feature->update($request->all());
 

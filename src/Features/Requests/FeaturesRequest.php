@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Requests;
+namespace Antvel\Features\Requests;
 
 use Antvel\Http\Request;
 use Illuminate\Validation\Rule;
@@ -38,7 +38,7 @@ class FeaturesRequest extends Request
 
             'name' => [
                 'required',
-                Rule::unique('products_features')->ignore($this->request->get('current_feature')),
+                Rule::unique('features')->ignore($this->request->get('current_feature')),
             ],
         ];
     }

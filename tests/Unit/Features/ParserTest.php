@@ -9,11 +9,11 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Features;
+namespace Antvel\Tests\Unit\Features;
 
 use Antvel\Tests\TestCase;
+use Antvel\Features\Parser;
 use Antvel\Product\Models\Product;
-use Antvel\Product\Features\Parser;
 
 class ParserTest extends TestCase
 {
@@ -60,8 +60,8 @@ class ParserTest extends TestCase
 		foreach ($products as $product) {
 			$first = $products->where('id', $product->id)->first();
 
-			$this->assertEquals($data[$product->id]['foo'], 'red');
 			$this->assertTrue(empty($data[$product->id]['color']));
+			$this->assertEquals($data[$product->id]['foo'], 'red');
 			$this->assertEquals($data[$product->id]['weight'], $first->features['weight']);
 			$this->assertEquals($data[$product->id]['dimensions'], $first->features['dimensions']);
 		}

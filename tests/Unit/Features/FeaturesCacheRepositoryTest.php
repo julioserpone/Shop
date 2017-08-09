@@ -9,12 +9,12 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Categories;
+namespace Antvel\Tests\Unit\Features;
 
 use Mockery as m;
 use Antvel\Tests\TestCase;
 use Antvel\Contracts\FeaturesRepositoryContract;
-use Antvel\Product\Features\Repositories\FeaturesCacheRepository;
+use Antvel\Features\Repositories\FeaturesCacheRepository;
 
 class FeaturesCacheRepositoryTest extends TestCase
 {

@@ -113,9 +113,9 @@ class FiltersParserTest extends TestCase
 			factory(Product::class)->make(['features' => '{"foo": "111", "bar": "222", "biz": "333"}']),
 		]);
 
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'color']);
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'weight']);
-		factory('Antvel\Product\Models\ProductFeatures')->states('filterable')->create(['name' => 'dimensions']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
+		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'dimensions']);
 
 		$filters = Filters::parse($products);
 		$filtersKeys = array_keys($filters);

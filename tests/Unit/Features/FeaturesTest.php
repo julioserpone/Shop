@@ -9,17 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Features;
+namespace Antvel\Tests\Unit\Features;
 
 use Antvel\Tests\TestCase;
-use Antvel\Product\Models\ProductFeatures;
+use Antvel\Features\Models\Feature;
 
 class FeaturesTest extends TestCase
 {
 	/** @test */
 	function it_can_create_a_new_feature_with_default_values()
 	{
-		$feature = ProductFeatures::create(['name' => 'feature']);
+		$feature = Feature::create(['name' => 'feature']);
 
 		$this->assertTrue($feature->exists());
 		$this->assertEquals('feature', $feature->name);
@@ -28,7 +28,7 @@ class FeaturesTest extends TestCase
 	/** @test */
 	function it_can_create_a_new_required_feature()
 	{
-		$feature = ProductFeatures::create([
+		$feature = Feature::create([
 			'name' => 'feature',
 			'input_type' => 'text',
 			'product_type' => 'item',
@@ -50,7 +50,7 @@ class FeaturesTest extends TestCase
 	/** @test */
 	function it_can_update_a_given_feature()
 	{
-		$feature = factory(ProductFeatures::class)->create()->first();
+		$feature = factory(Feature::class)->create()->first();
 
 		$feature->update([
 			'name' => 'feature',
@@ -70,7 +70,7 @@ class FeaturesTest extends TestCase
 	/** @test */
 	function it_can_update_a_given_required_feature_and_mark_it_as_no_required()
 	{
-		$feature = factory(ProductFeatures::class)->create(['validation_rules' => 'required']);
+		$feature = factory(Feature::class)->create(['validation_rules' => 'required']);
 
 		$feature->update(['name' => 'foo']);
 

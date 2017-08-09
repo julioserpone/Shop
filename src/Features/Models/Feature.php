@@ -9,19 +9,19 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Models;
+namespace Antvel\Features\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Antvel\Product\Features\ValidationRulesParser;
+use Antvel\Features\ValidationRulesParser;
 
-class ProductFeatures extends Model
+class Feature extends Model
 {
 	/**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'products_features';
+    protected $table = 'features';
 
     /**
      * The attributes that should be mutated to dates.

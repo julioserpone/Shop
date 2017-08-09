@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit;
+namespace Antvel\Tests\Unit\Users;
 
 use Carbon\Carbon;
 use Antvel\Tests\Unit\Users\UsersTestCase;

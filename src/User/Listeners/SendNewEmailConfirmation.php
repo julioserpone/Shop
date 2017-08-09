@@ -36,6 +36,7 @@ class SendNewEmailConfirmation implements ShouldQueue
     {
         $this->mailer = $mailer;
     }
+
     /**
      * Handle the event.
      *
