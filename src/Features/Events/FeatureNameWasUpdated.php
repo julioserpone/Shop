@@ -14,17 +14,22 @@ namespace Antvel\Features\Events;
 use Antvel\Features\Models\Feature;
 use Illuminate\Queue\SerializesModels;
 
-class ProductFeatureSaved
+class FeatureNameWasUpdated
 {
 	use SerializesModels;
 
     /**
-     * The product feature to be updated.
+     * The feature to be updated.
      *
-     * @var ProductFeatures
+     * @var Feature
      */
     public $feature = null;
 
+    /**
+     * The new feature name.
+     *
+     * @var string
+     */
     public $updatedName = '';
 
     /**
@@ -34,7 +39,7 @@ class ProductFeatureSaved
      *
      * @return void
      */
-    public function __construct(ProductFeatures $feature, $updatedName)
+    public function __construct(Feature $feature, $updatedName)
     {
         $this->feature = $feature;
         $this->updatedName = $updatedName;

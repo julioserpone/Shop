@@ -142,7 +142,7 @@ class ProductsTest extends ProductsTestCase
 		$this->assertFalse($product->fresh()->status);
 	}
 
-		/** @test */
+	/** @test */
 	function it_is_able_to_activate_a_given_product()
 	{
 		$this->signInAs('seller');
@@ -154,5 +154,26 @@ class ProductsTest extends ProductsTestCase
 		]), $product);
 
 		$this->assertTrue($product->fresh()->status);
+	}
+
+	/**
+	 * @test
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 */
+	function it_is_able_to_retrieve_a_list_of_products_by_a_given_features_key()
+	{
+		$this->usingMySql();
+
+		factory(Product::class)->create(['features' => '{"color": "white", "weight": "11"}']);
+		factory(Product::class)->create(['features' => '{"weight": "12"}']);
+
+		$products = Product::byFeaturesKey('color')->get();
+
+		$this->assertCount(1, $products);
+		$this->assertEquals('11', $products->first()->features['weight']);
+		$this->assertEquals('white', $products->first()->features['color']);
+
+		$this->artisan('migrate:reset', ['--database' => self::TESTING_DB]);
 	}
 }

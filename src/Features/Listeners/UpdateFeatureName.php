@@ -11,39 +11,60 @@
 
 namespace Antvel\Features\Listeners;
 
+use Antvel\Features\Parser;
+use Antvel\Product\Models\Product;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Antvel\Features\Events\ProductFeatureSaved;
-
-// use  Antvel\Feature\Models\Product;
-use  Antvel\Features\Parser;
+use Antvel\Features\Events\FeatureNameWasUpdated;
 
 class UpdateFeatureName implements ShouldQueue
 {
 	/**
      * Handle the event.
      *
-     * @param  ProductFeatureSaved  $event
+     * @param  FeatureNameWasUpdated  $event
      *
      * @return void
      */
-    public function handle(ProductFeatureSaved $event)
+    public function handle(FeatureNameWasUpdated $event)
     {
-        dd('listening!');
+        $attributes = Parser::replaceTheGivenKeyFor(
+            $products = $this->products($event->feature->name),
+            $event->feature->name,
+            $event->updatedName
+        );
 
-    	// if ($event->updatedName != $event->feature->name) {
-     //        $products = Product::filter(['color' => 'red'])->get();
-     //        $data = Parser::replaceTheGivenKeyFor($products, $event->feature->name, $event->updatedName);
+        $this->updateProductsFeatures(
+            $attributes, $products
+        );
 
-     //        foreach ($products as $product) {
-     //            $product->update([
-     //                'features' => json_encode($data[$product->id])
-     //            ]);
-     //            $product->save();
-     //        }
+        $event->feature->update(['name' => $event->updatedName]);
+    }
 
-     //        $event->feature->update(['name' => $event->updatedName]);
+    /**
+     * Returns a products list for the given feature key.
+     *
+     * @param  string $key
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    protected function products(string $key)
+    {
+        return Product::byFeaturesKey($key)->get();
+    }
 
-     //        // dd('hi', $event->feature->name, $event->updatedName);
-     //    }
+    /**
+     * Update the given products features with the passed attributes.
+     *
+     * @param  array $attributes
+     * @param  \Illuminate\Database\Eloquent\Collection $products
+     *
+     * @return void
+     */
+    protected function updateProductsFeatures(array $attributes, $products)
+    {
+        $products->each(function ($item, $key) use ($attributes, $products) {
+            $item->update(['features' => json_encode($attributes[$item->id])]);
+            $item->save();
+        });
     }
 }

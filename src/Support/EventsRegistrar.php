@@ -26,7 +26,7 @@ class EventsRegistrar
             \Antvel\User\Listeners\SendNewEmailConfirmation::class,
         ],
 
-        \Antvel\Features\Events\ProductFeatureSaved::class => [
+        \Antvel\Features\Events\FeatureNameWasUpdated::class => [
             \Antvel\Features\Listeners\UpdateFeatureName::class,
         ],
     ];

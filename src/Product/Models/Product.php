@@ -134,6 +134,19 @@ class Product extends Model
     }
 
     /**
+     * Returns a products list for the given feature key.
+     *
+     * @param  Illuminate\Database\Eloquent\Builder $query
+     * @param  string $key
+     *
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByFeaturesKey($query, string $key)
+    {
+        return $query->whereNotNull("features->" . $key);
+    }
+
+    /**
      * Returns suggestions for a given tags and type.
      *
      * @param  Illuminate\Database\Eloquent\Builder $query
