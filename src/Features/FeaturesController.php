@@ -14,6 +14,7 @@ namespace Antvel\Features;
 use Antvel\Http\Controller;
 use Antvel\Features\Models\Feature;
 use Antvel\Features\Requests\FeaturesRequest;
+use Antvel\Features\Events\FeatureNameWasUpdated;
 
 class FeaturesController extends Controller
 {
@@ -82,7 +83,13 @@ class FeaturesController extends Controller
      */
     public function update(FeaturesRequest $request, Feature $feature)
     {
-        $feature->update($request->all());
+        if ($request->has('name') && $feature->name != $request->get('name')) {
+            event(new FeatureNameWasUpdated($feature, $request->get('name')));
+        }
+
+        $feature->update(
+            $request->except('name')
+        );
 
         return redirect()->route('features.edit', $feature)->with('status', trans('globals.success_text'));
     }
