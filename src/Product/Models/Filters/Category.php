@@ -60,10 +60,15 @@ class Category implements FilterContract
 	 */
 	protected function parseInput(string $input)
 	{
-		$category = explode('|', urldecode($input));
+		$category = explode('|', $input);
 
-		$this->category_name = Arr::last($category);
-		$this->category_id = Arr::first($category);
+		if (isset($category[0]) && trim($category[0]) != '') {
+			$this->category_id = urldecode($category[0]);
+		}
+
+		if (isset($category[1]) && trim($category[1]) != '') {
+			$this->category_name = urldecode($category[1]);
+		}
 	}
 
 	/**
