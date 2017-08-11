@@ -65,7 +65,17 @@ class Category extends Model
      */
     public function children()
     {
-        return $this->hasMany(Category::class);
+        return $this->hasMany(Category::class, 'category_id');
+    }
+
+    /**
+     * Returns a recursive list of the children categories.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function childrenRecursive()
+    {
+       return $this->children()->with('childrenRecursive');
     }
 
     /**

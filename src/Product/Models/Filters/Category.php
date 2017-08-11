@@ -12,6 +12,7 @@
 namespace Antvel\Product\Models\Filters;
 
 use Illuminate\Support\Arr;
+use Antvel\Categories\Normalizer;
 use Illuminate\Support\Facades\App;
 use Illuminate\Database\Eloquent\Builder;
 
@@ -100,7 +101,7 @@ class Category implements FilterContract
 			'id', 'category_id', 'name'
 		]);
 
-		return $categories->pluck('id')->unique()
+		return Normalizer::generation($categories)
         	->prepend((int) $this->category_id)
         	->all();
 	}

@@ -94,20 +94,29 @@ class IntegrationTest extends TestCase
 
 	public function test_it_can_retrieve_products_by_categories()
 	{
-		$tools = factory(Category::class)->create(['name' => 'tools']);
-		$software = factory(Category::class)->create(['name' => 'software']);
-		$toolsProducts = factory(Product::class, 2)->create(['category_id' => $tools->id]);
-		$softwareProducts = factory(Product::class, 2)->create(['category_id' => $software->id]);
+		$categoryA = factory(Category::class)->create(['id' => 1, 'name' => 'A', 'category_id' => null]);
+		$categoryB = factory(Category::class)->create(['id' => 2, 'name' => 'B', 'category_id' => $categoryA->id]);
+		$categoryC = factory(Category::class)->create(['id' => 3, 'name' => 'C', 'category_id' => $categoryA->id]);
+		$categoryD = factory(Category::class)->create(['id' => 4, 'name' => 'D', 'category_id' => $categoryB->id]);
+		$categoryE = factory(Category::class)->create(['id' => 5, 'name' => 'E', 'category_id' => $categoryD->id]);
+		$categoryF = factory(Category::class)->create(['id' => 6, 'name' => 'F', 'category_id' => $categoryC->id]);
 
-		$byTools = $this->repository->filter([
-			'category' => $tools->id . '|' . $tools->name,
-		])->get();
+		$productsA = factory(Product::class)->create(['id' => 1, 'category_id' => $categoryA->id]);
+		$productsB = factory(Product::class)->create(['id' => 2, 'category_id' => $categoryB->id]);
+		$productsC = factory(Product::class)->create(['id' => 3, 'category_id' => $categoryC->id]);
+		$productsD = factory(Product::class)->create(['id' => 4, 'category_id' => $categoryD->id]);
+		$productsE = factory(Product::class)->create(['id' => 5, 'category_id' => $categoryE->id]);
+		$productsF = factory(Product::class)->create(['id' => 6, 'category_id' => $categoryF->id]);
 
-		$this->assertCount(2, $byTools);
-		$byTools->each(function ($item) use ($tools) {
-			$this->assertEquals($tools->id, $item->category_id);
-			$this->assertEquals('tools', $item->category->name);
-		});
+		$results = $this->repository->filter(['category' => $categoryA->id . '|' . $categoryA->name])->get();
+
+		$this->assertCount(6, $results);
+		$this->assertSame($productsA->category_id, $categoryA->id);
+		$this->assertSame($productsB->category_id, $categoryB->id);
+		$this->assertSame($productsC->category_id, $categoryC->id);
+		$this->assertSame($productsD->category_id, $categoryD->id);
+		$this->assertSame($productsE->category_id, $categoryE->id);
+		$this->assertSame($productsF->category_id, $categoryF->id);
 	}
 
 	public function test_it_can_retrieve_products_by_categories_and_its_children()

@@ -12,6 +12,7 @@
 namespace Antvel\Tests\Unit\Categories;
 
 use Antvel\Tests\TestCase;
+use Antvel\Categories\Normalizer;
 use Antvel\Product\Models\Product;
 use Antvel\Categories\Models\Category;
 use Antvel\Categories\Repositories\CategoriesRepository;
@@ -60,13 +61,15 @@ class CategoriesRepositoryTest extends TestCase
 	/** @test */
 	function it_can_list_a_given_category_children()
 	{
-		$categoryA = factory(Category::class)->create(['name' => 'categoryA']);
-		$categoryB = factory(Category::class)->create(['name' => 'categoryB']);
-		$categoryC = factory(Category::class)->create(['name' => 'categoryC', 'category_id' => $categoryA->id]);
+		$categoryA = factory(Category::class)->create(['id' => 1, 'name' => 'A', 'category_id' => null]);
+		$categoryB = factory(Category::class)->create(['id' => 2, 'name' => 'B', 'category_id' => $categoryA->id]);
+		$categoryC = factory(Category::class)->create(['id' => 3, 'name' => 'C', 'category_id' => $categoryA->id]);
+		$categoryD = factory(Category::class)->create(['id' => 4, 'name' => 'D', 'category_id' => $categoryB->id]);
+		$categoryE = factory(Category::class)->create(['id' => 5, 'name' => 'E', 'category_id' => $categoryD->id]);
+		$categoryF = factory(Category::class)->create(['id' => 6, 'name' => 'F', 'category_id' => $categoryC->id]);
 
 		$children = (new CategoriesRepository)->childrenOf($categoryA->id);
 
-		$this->assertCount(1, $children);
-		$this->assertEquals($children->first()->id, $categoryC->id);
+		$this->assertCount(5, Normalizer::generation($children));
 	}
 }
