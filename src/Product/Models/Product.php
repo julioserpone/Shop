@@ -44,7 +44,7 @@ class Product extends Model
     protected $fillable = [
         'category_id', 'created_by', 'updated_by', 'name', 'description', 'price', 'cost',
         'stock', 'features', 'barcode', 'condition', 'rate_val', 'tags', 'brand',
-        'rate_count', 'low_stock', 'status', 'parent_id',
+        'rate_count', 'low_stock', 'status', 'parent_id', 'view_counts'
     ];
 
     /**
