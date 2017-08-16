@@ -17,7 +17,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use Concerns\Pictures;
+    use Concerns\Pictures,
+        Concerns\InteractWithGroups;
 
     /**
      * The database table used by the model.
@@ -44,7 +45,7 @@ class Product extends Model
     protected $fillable = [
         'category_id', 'created_by', 'updated_by', 'name', 'description', 'price', 'cost',
         'stock', 'features', 'barcode', 'condition', 'rate_val', 'tags', 'brand',
-        'rate_count', 'low_stock', 'status', 'parent_id', 'view_counts'
+        'rate_count', 'low_stock', 'status', 'view_counts', 'grouping'
     ];
 
     /**
@@ -110,15 +111,7 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    /**
-     * A product has many groups.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function group()
-    {
-        return $this->hasMany($this, 'products_group', 'products_group');
-    }
+
 
     /**
      * Filter users upon type requested.

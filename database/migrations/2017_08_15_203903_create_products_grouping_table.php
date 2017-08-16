@@ -9,10 +9,11 @@
  * file that was distributed with this source code.
  */
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreateProductsGroupingTable extends Migration
 {
     /**
      * Run the migrations.
@@ -21,19 +22,14 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('products_grouping', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id')->unsigned()->nullable();
-            $table->string('name', 60);
-            $table->string('description', 100);
-            $table->string('icon', 60)->nullable();
-            $table->string('image', 100)->nullable();
-            $table->boolean('status')->default(1);
-            $table->enum('type', ['group', 'store'])->default('store');
-
-            $table->foreign('category_id')->references('id')->on('categories');
-
+            $table->integer('product_id')->unsigned();
+            $table->integer('associated_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('associated_id')->references('id')->on('products');
         });
     }
 
@@ -44,6 +40,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('products_grouping');
     }
 }
