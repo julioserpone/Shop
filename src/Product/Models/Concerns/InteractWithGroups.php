@@ -11,6 +11,8 @@
 
 namespace Antvel\Product\Models\Concerns;
 
+use Illuminate\Support\Collection;
+
 trait InteractWithGroups
 {
     /**
@@ -20,7 +22,9 @@ trait InteractWithGroups
      */
     public function group()
     {
-        return $this->belongsToMany($this, 'products_grouping', 'product_id', 'associated_id');
+        return $this
+            ->belongsToMany($this, 'products_grouping', 'product_id', 'associated_id')
+            ->withTimestamps();
     }
 
     /**
@@ -44,9 +48,27 @@ trait InteractWithGroups
      */
     public function groupWith(...$products)
     {
+        $products = Collection::make($products)->flatten()->all();
+
         foreach ($products as $product) {
-            $this->group()->attach($product);
+            if (! $this->hasGroup($product)) {
+                $this->group()->attach($product);
+            }
         }
+    }
+
+    /**
+     * Checks whether the given product has the associated product in its group.
+     *
+     * @param  self|int $associated
+     *
+     * @return boolean
+     */
+    public function hasGroup($associated) : bool
+    {
+        $associated_id = $associated instanceof $this ? $associated->id : $associated;
+
+        return !! $this->group()->where('associated_id', $associated_id)->exists();
     }
 
     /**

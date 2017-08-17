@@ -62,16 +62,74 @@ class ProductsGroupingTest extends ProductsTestCase
 	}
 
 	/** @test */
+	function it_group_a_product_with_the_given_products_referring_by_their_ids()
+	{
+		$productA = factory(Product::class)->create(['name' => 'Product A']);
+		$productB = factory(Product::class)->create(['name' => 'Product B']);
+	    $productC = factory(Product::class)->create(['name' => 'Product C']);
+
+		$productA->groupWith($productB->id, $productC->id);
+
+		tap($productA->group, function ($grouping) use ($productB, $productC) {
+	    	$this->assertTrue($grouping->first()->is($productB));
+	    	$this->assertTrue($grouping->last()->is($productC));
+	    	$this->assertCount(2, $grouping);
+	    });
+	}
+
+	/** @test */
+	function products_group_have_to_be_constructed_of_unique_products()
+	{
+		$productA = factory(Product::class)->create(['name' => 'Product A']);
+		$productB = factory(Product::class)->create(['name' => 'Product B']);
+	    $productC = factory(Product::class)->create(['name' => 'Product C']);
+
+		$productA->groupWith($productB, $productB);
+		$productB->groupWith($productC->id, $productC->id);
+
+		tap($productA->group, function ($grouping) use ($productB) {
+	    	$this->assertTrue($grouping->first()->is($productB));
+	    	$this->assertCount(1, $grouping);
+	    });
+
+	    tap($productB->group, function ($grouping) use ($productC) {
+	    	$this->assertTrue($grouping->first()->is($productC));
+	    	$this->assertCount(1, $grouping);
+	    });
+	}
+
+	/** @test */
 	function it_can_delete_products_from_a_given_group()
 	{
 		$productA = factory(Product::class)->create(['name' => 'Product A']);
 	    $productB = factory(Product::class)->create(['name' => 'Product B']);
 	    $productC = factory(Product::class)->create(['name' => 'Product C']);
 
-	    $productA->groupWith($productB, $productC->id);
+	    $productA->groupWith($productB, $productC);
 	    $productB->groupWith($productC);
 
 	    $productB->ungroup($productC);
+
+	    tap($productA->group, function ($grouping) use ($productB, $productC) {
+	    	$this->assertTrue($grouping->first()->is($productB));
+	    	$this->assertTrue($grouping->last()->is($productC));
+	    	$this->assertCount(2, $grouping);
+	    });
+
+	    $this->assertCount(0, $productB->group);
+	}
+
+	/** @test */
+	function it_can_delete_products_from_a_given_group_referring_by_their_ids()
+	{
+		$productA = factory(Product::class)->create(['name' => 'Product A']);
+	    $productB = factory(Product::class)->create(['name' => 'Product B']);
+	    $productC = factory(Product::class)->create(['name' => 'Product C']);
+
+	    $productA->groupWith($productB->id, $productC->id);
+	    $productB->groupWith($productC->id);
+
+	    $productB->ungroup($productC->id);
 
 	    tap($productA->group, function ($grouping) use ($productB, $productC) {
 	    	$this->assertTrue($grouping->first()->is($productB));

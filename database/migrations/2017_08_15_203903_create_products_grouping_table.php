@@ -28,6 +28,7 @@ class CreateProductsGroupingTable extends Migration
             $table->integer('associated_id')->unsigned();
             $table->timestamps();
 
+            $table->unique(['product_id', 'associated_id']);
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('associated_id')->references('id')->on('products');
         });

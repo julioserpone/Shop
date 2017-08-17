@@ -28,6 +28,6 @@ class ProductGroping extends Model
      * @var array
      */
     protected $fillable = [
-        'product_id', 'associated_id'
+        'product_id', 'associated_id', 'created_at', 'updated_at'
     ];
 }

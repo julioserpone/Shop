@@ -13,12 +13,11 @@ namespace Antvel\Product;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
+use Antvel\Features\Models\Feature;
 use Illuminate\Support\Facades\Auth;
 use Antvel\Categories\Models\Category;
 use Antvel\Product\Requests\ProductsRequest;
 use Antvel\Support\Images\Manager as Images;
-
-use Antvel\Features\Models\Feature;
 
 class Products2Controller extends Controller
 {
