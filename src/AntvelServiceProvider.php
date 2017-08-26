@@ -36,6 +36,7 @@ class AntvelServiceProvider extends ServiceProvider
         $this->registerServices();
         $this->registerMiddlewares();
         $this->registerServicesAliases();
+        $this->registerAntvelProviders();
     }
 
     /**
@@ -71,6 +72,18 @@ class AntvelServiceProvider extends ServiceProvider
     {
         foreach (Antvel::alias() as $key => $value) {
             $this->app->alias($value, $key);
+        }
+    }
+
+    /**
+     * Register Antvel services providers.
+     *
+     * @return void
+     */
+    protected function registerAntvelProviders()
+    {
+        foreach (Antvel::providers() as $provider) {
+            $this->app->register($provider);
         }
     }
 

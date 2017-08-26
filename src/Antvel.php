@@ -52,6 +52,18 @@ class Antvel
     }
 
     /**
+     * The Antvel components services providers.
+     *
+     * @return array
+     */
+    public static function providers()
+    {
+        return [
+            User\UsersServiceProvider::class,
+        ];
+    }
+
+    /**
      * Registers Antvel events and listeners.
      *
      * @return void
@@ -94,5 +106,39 @@ class Antvel
         Route::group($options, function ($router) use ($callback) {
             $callback($router);
         });
+    }
+
+    /**
+     * Get the base path of the Antvel installation.
+     *
+     * @param string $path Optionally, a path to append to the base path
+     *
+     * @return string
+     */
+    public static function basePath($path = '')
+    {
+        return realpath(__DIR__ . '/../').($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+
+    /**
+     * Get the path to the resources directory.
+     *
+     * @param  string  $path
+     *
+     * @return string
+     */
+    public static function resourcePath($path = '')
+    {
+        return self::basePath().DIRECTORY_SEPARATOR.'resources'.($path ? DIRECTORY_SEPARATOR.$path : $path);
+    }
+
+    /**
+     * Get the path to the language files.
+     *
+     * @return string
+     */
+    public static function langPath()
+    {
+        return self::resourcePath().DIRECTORY_SEPARATOR.'lang';
     }
 }

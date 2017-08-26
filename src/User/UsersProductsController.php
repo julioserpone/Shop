@@ -15,7 +15,7 @@ use Antvel\Http\Controller;
 use Antvel\Product\Products;
 use Illuminate\Http\Request;
 
-class UsersProductsController extends Controller
+class UsersProductsController extends Controller //see if needs to be deleted!
 {
 	protected $products = null;
 

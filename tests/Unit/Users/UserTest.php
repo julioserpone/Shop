@@ -17,11 +17,6 @@ use Illuminate\Contracts\Auth\Authenticatable;
 
 class UserTest extends UsersTestCase
 {
-	public function setUp()
-	{
-		parent::setUp();
-	}
-
 	protected function validData($attributes = [])
     {
         return array_merge($attributes, [

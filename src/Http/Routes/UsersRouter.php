@@ -33,6 +33,10 @@ class UsersRouter implements ComponentRouter
         ], function ($router) {
 
             $router->resource('user', 'UsersController');
+
+            $router->resource('push', 'Http\PushNotificationsController');
+            $router->resource('notifications', 'Http\NotificationsController');
+
             $router->get('user/products/listing', 'UsersProductsController@index')->name('users.products');
 
             $router->group([
