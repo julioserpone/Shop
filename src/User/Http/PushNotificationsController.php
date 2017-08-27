@@ -12,13 +12,12 @@
 namespace Antvel\User\Http;
 
 use Antvel\Http\Controller;
-use Illuminate\Http\Request;
 use Antvel\User\Repositories\PusNotificationsRepository;
 
 class PushNotificationsController extends Controller
 {
 	/**
-	 * Shows the user notifications list.
+	 * Shows the signed user notifications list.
 	 *
 	 * @param  PusNotificationsRepository $notifications
 	 *

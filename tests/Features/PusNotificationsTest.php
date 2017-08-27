@@ -48,21 +48,4 @@ class PusNotificationsTest extends TestCase
 			$this->assertTrue(isset($data['unread']));
 		});
 	}
-
-	/** @test */
-	function an_authorized_user_can_mark_a_given_notification_as_read()
-	{
-		$user = factory(User::class)->create();
-
-		$notificationA = factory(DatabaseNotification::class)->states('unread')->create(['notifiable_id' => $user->id]);
-		$notificationB = factory(DatabaseNotification::class)->states('unread')->create(['notifiable_id' => $user->id]);
-
-	    // $response = $this->actingAs($user)->call('PATCH', 'push/' . $notificationA->id, [
-	    // ]);
-
-		// dd(
-		// 	$user->notifications->toArray()
-		// 	, $response->json()
-		// );
-	}
 }

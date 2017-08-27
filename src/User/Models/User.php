@@ -104,6 +104,22 @@ class User extends Authenticatable
     }
 
     /**
+     * Marks the given notification as read.
+     *
+     * @param  int $notification_id
+     *
+     * @return void
+     */
+    public function markNotificationAsRead($notification_id)
+    {
+        $notification = $this->notifications()->where('id', $notification_id);
+
+        if ($notification->exists()) {
+            $notification->first()->markAsRead();
+        }
+    }
+
+    /**
      * Set the user's preferences.
      *
      * @param  string|array  $value

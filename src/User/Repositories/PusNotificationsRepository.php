@@ -33,9 +33,9 @@ class PusNotificationsRepository
      *
      * @return array
      */
-    public function all()
+    public function read()
     {
-        return Auth::user()->notifications->map(function ($item) {
+        return Auth::user()->notifications()->whereNotNull('read_at')->get()->map(function ($item) {
             return $this->toCollect($item);
         });
     }
@@ -45,9 +45,9 @@ class PusNotificationsRepository
      *
      * @return array
      */
-    public function read()
+    public function all()
     {
-        return Auth::user()->notifications()->whereNotNull('read_at')->get()->map(function ($item) {
+        return Auth::user()->notifications->map(function ($item) {
             return $this->toCollect($item);
         });
     }
