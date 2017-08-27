@@ -112,7 +112,9 @@ class User extends Authenticatable
      */
     public function markNotificationAsRead($notification_id)
     {
-        $notification = $this->notifications()->where('id', $notification_id);
+        $notification = $this->notifications()
+            ->where('id', $notification_id)
+            ->whereNull('read_at');
 
         if ($notification->exists()) {
             $notification->first()->markAsRead();

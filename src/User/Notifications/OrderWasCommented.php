@@ -79,7 +79,14 @@ class OrderWasCommented extends Notification
         ];
     }
 
-    protected function sourcePath($notifiable)
+    /**
+     * Returns the notification path.
+     *
+     * @param  mixed $notifiable
+     *
+     * @return string
+     */
+    protected function sourcePath($notifiable) //while refactoring
     {
         if ($notifiable->isAdmin()) {
             return route('orders.show_seller_order', $this->order);

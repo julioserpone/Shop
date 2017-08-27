@@ -88,9 +88,9 @@ class OrderWasUpdated extends Notification
     }
 
     /**
-     * Resolves the notification path.
+     * Returns the notification path.
      *
-     * @param  \Illuminate\Foundation\Auth\User $notifiable
+     * @param  mixed $notifiable
      *
      * @return string
      */
