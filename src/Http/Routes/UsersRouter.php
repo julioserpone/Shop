@@ -37,8 +37,6 @@ class UsersRouter implements ComponentRouter
             $router->resource('push', 'Http\PushNotificationsController');
             $router->resource('notifications', 'Http\NotificationsController');
 
-            $router->get('user/products/listing', 'UsersProductsController@index')->name('users.products');
-
             $router->group([
 
                 'middleware' => ['web', 'auth'],
