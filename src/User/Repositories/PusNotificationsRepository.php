@@ -19,11 +19,14 @@ class PusNotificationsRepository
     /**
      * Shows the unread user notifications formatted.
      *
+     * @param int $limit
      * @return array
      */
-    public function unread()
+    public function unread($limit = 5)
     {
-        return Auth::user()->unreadNotifications->map(function ($item) {
+        $unread = Auth::user()->unreadNotifications->take($limit);
+
+        return $unread->map(function ($item) {
             return $this->toCollect($item);
         });
     }
@@ -31,11 +34,14 @@ class PusNotificationsRepository
     /**
      * Shows the read user notifications formatted.
      *
+     * @param int $limit
      * @return array
      */
-    public function read()
+    public function read($limit = 5)
     {
-        return Auth::user()->notifications()->whereNotNull('read_at')->get()->map(function ($item) {
+        $read = Auth::user()->notifications()->whereNotNull('read_at')->take($limit)->get();
+
+        return $read->map(function ($item) {
             return $this->toCollect($item);
         });
     }
@@ -43,11 +49,14 @@ class PusNotificationsRepository
     /**
      * Shows the read user notifications formatted.
      *
+     * @param int $limit
      * @return array
      */
-    public function all()
+    public function all($limit = 5)
     {
-        return Auth::user()->notifications->map(function ($item) {
+        $all = Auth::user()->notifications->take($limit);
+
+        return $all->map(function ($item) {
             return $this->toCollect($item);
         });
     }

@@ -86,8 +86,8 @@ class DashboardRouter implements ComponentRouter
 	 */
 	protected function forProducts($router)
 	{
-		$router->resource('items', 'Product\Products2Controller');
+		$router->resource('items', 'Product\ProductsController');
         $router->resource('itemgroup', 'Product\ProductsGroupingController');
-        $router->get('items', 'Product\Products2Controller@indexDashboard')->name('items.index');
+        $router->get('items', 'Product\ProductsController@indexDashboard')->name('items.index');
 	}
 }

@@ -32,7 +32,7 @@ class ProductsRouter implements ComponentRouter
 
         ], function ($router) {
 
-            $router->get('products', 'Products2Controller@index')->name('products.index');
+        	$router->resource('products', 'ProductsController');
             $router->get('productsSearch/', 'SearchController@index')->name('products.search'); ///////////////see if it can be move to search url
 
         });

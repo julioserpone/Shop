@@ -13,13 +13,16 @@ namespace Antvel\Product;
 
 use Antvel\Http\Controller;
 use Illuminate\Http\Request;
+use Antvel\Product\Models\Product;
 use Antvel\Features\Models\Feature;
 use Illuminate\Support\Facades\Auth;
 use Antvel\Categories\Models\Category;
 use Antvel\Product\Requests\ProductsRequest;
 use Antvel\Support\Images\Manager as Images;
+use Antvel\Orders\Models\{ Order, OrderDetail };
+use Antvel\Product\Repositories\ProductsRepository;
 
-class Products2Controller extends Controller
+class ProductsController extends Controller
 {
 	/**
 	 * The products repository.
@@ -92,6 +95,34 @@ class Products2Controller extends Controller
 			'products' => $products,
 		]);
 	}
+
+	/**
+     * Display the given product.
+     *
+     * @param Product $product
+     *
+     * @return void
+     */
+    public function show(Product $product)
+    {
+        $product->load('group', 'category');
+
+        //increasing product counters, in order to have a suggestion orden
+        (new ProductsRepository)->increment('view_counts', $product);
+
+        //saving the product tags into users preferences
+        if (trim($product->tags) != '' && auth()->check()) {
+            auth()->user()->updatePreferences('product_viewed', $product->tags);
+        }
+
+        return view('products.detailProd', [
+            'suggestions' => Suggestions\Suggest::for('product_viewed')->shake()->get('product_viewed'),
+            'reviews' => OrderDetail::ReviewsFor($product->id),
+            'allWishes' => Order::forSignedUser('wishlist'),
+            'features' => Feature::filterable()->get(),
+            'product' => $product,
+        ]);
+    }
 
 	/**
 	 * Show the creating form.
