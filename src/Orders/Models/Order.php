@@ -14,6 +14,7 @@ namespace Antvel\Orders\Models;
 use Antvel\User\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
+use Antvel\Comments\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 
@@ -58,6 +59,15 @@ class Order extends Model
     public function seller()
     {
         return $this->belongsTo(User::class, 'seller_id');
+    }
+
+    /**
+     * Get all of the comments of the order.
+     */
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')
+            ->orderBy('created_at', 'desc');
     }
 
     public function details()
