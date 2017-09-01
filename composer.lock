@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "bd571589e44dba51ff99eeafc4ae017a",
-    "content-hash": "c934402b3f2b152520f50072cb9add89",
+    "hash": "690cb1710f5ca248d0e9fbe70a26458e",
+    "content-hash": "f1fefa1e17f0c7362328c8e6a2f77f24",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -364,16 +364,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.5.0",
+            "version": "5.5.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "bd352a0d2ca93775fce8ef02365b03fc4fb8cbb0"
+                "reference": "7166315334349b9cf92ec422b6fe56977eaf4d8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/bd352a0d2ca93775fce8ef02365b03fc4fb8cbb0",
-                "reference": "bd352a0d2ca93775fce8ef02365b03fc4fb8cbb0",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7166315334349b9cf92ec422b6fe56977eaf4d8b",
+                "reference": "7166315334349b9cf92ec422b6fe56977eaf4d8b",
                 "shasum": ""
             },
             "require": {
@@ -437,7 +437,7 @@
                 "aws/aws-sdk-php": "~3.0",
                 "doctrine/dbal": "~2.5",
                 "filp/whoops": "^2.1.4",
-                "mockery/mockery": "~0.9.4",
+                "mockery/mockery": "~1.0",
                 "orchestra/testbench-core": "3.5.*",
                 "pda/pheanstalk": "~3.0",
                 "phpunit/phpunit": "~6.0",
@@ -459,7 +459,7 @@
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0).",
                 "symfony/css-selector": "Required to use some of the crawler integration testing tools (~3.3).",
                 "symfony/dom-crawler": "Required to use most of the crawler integration testing tools (~3.3).",
-                "symfony/psr-http-message-bridge": "Required to psr7 bridging features (0.2.*)."
+                "symfony/psr-http-message-bridge": "Required to psr7 bridging features (~1.0)."
             },
             "type": "library",
             "extra": {
@@ -492,7 +492,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2017-08-30 09:25:30"
+            "time": "2017-09-01 16:26:40"
         },
         {
             "name": "league/flysystem",
@@ -500,12 +500,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b203d29086046ba1fd629534eb96ed85774753d2"
+                "reference": "2a12dff63eca980f103747935b6178862d9c88db"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b203d29086046ba1fd629534eb96ed85774753d2",
-                "reference": "b203d29086046ba1fd629534eb96ed85774753d2",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/2a12dff63eca980f103747935b6178862d9c88db",
+                "reference": "2a12dff63eca980f103747935b6178862d9c88db",
                 "shasum": ""
             },
             "require": {
@@ -575,7 +575,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2017-08-14 18:55:15"
+            "time": "2017-09-01 19:06:55"
         },
         {
             "name": "monolog/monolog",
