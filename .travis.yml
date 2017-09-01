@@ -18,10 +18,11 @@ dist: trusty
 sudo: required
 
 env:
-  - LARAVEL_VERSION=5.4.*
+  - LARAVEL_VERSION=5.5.*
 
 before_script:
   - composer self-update
+  - composer clear-cache
   - composer require "laravel/framework:${LARAVEL_VERSION}"
   - mysql -e 'create database antvel_testing;'
 
