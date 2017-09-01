@@ -72,32 +72,6 @@ class ManagerTest extends TestCase
 	}
 
 	/** @test */
-	function it_can_parse_and_update_an_batch_of_images_with_a_given_one()
-	{
-		$current_pictures = $this->makePictures($disk = 'images');
-
-		$data = [
-			'storing' => [
-				1 => $this->persistentUpload($disk),
-				2 => $this->persistentUpload($disk),
-			]
-		];
-
-		// $pictures = Manager::parse($data)
-		// 	->on($disk)
-		// 	->update($current_pictures);
-
-		// foreach ($pictures as $key => $picture) {
-		// 	Storage::disk($disk)->assertExists($this->image($picture['path']));
-		// }
-
-		// Storage::disk($disk)->assertMissing($this->image($current_pictures[0]['path']));
-		// Storage::disk($disk)->assertMissing($this->image($current_pictures[1]['path']));
-
-		// $this->cleanDirectory($disk);
-	}
-
-	/** @test */
 	function it_can_delete_pictures()
 	{
 		$current_pictures = $this->makePictures($disk = 'images');

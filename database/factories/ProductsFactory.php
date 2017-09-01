@@ -17,7 +17,7 @@ use Antvel\Product\Models\{ Product, ProductPictures };
 $factory->define(Product::class, function (Faker $faker) use ($factory)
 {
     return [
-        'category_id' => products_factory_category()->id,
+        'category_id' => function () { return factory(Category::class)->create()->id; },
         'created_by' => $user_id = products_factory_user()->id,
         'updated_by' => $user_id,
         'tags' => $faker->word . ',' . $faker->word . ',' . $faker->word,
@@ -82,7 +82,7 @@ if (! function_exists('products_factory_user')) {
         $user = User::where('nickname', 'seller')->first();
 
         if (is_null($user)) {
-            return factory(User::class)->states('seller')->create()->first();
+            return factory(User::class)->states('seller')->create();
         }
 
         return $user;

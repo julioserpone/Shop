@@ -142,7 +142,7 @@ class UsersRepositoryTest extends UsersTestCase
 			$this->assertEquals($preferences['product_shared'], 'bb');
 			$this->assertEquals($preferences['product_viewed'], 'cc');
 			$this->assertEquals($preferences['product_purchased'], 'dd');
-			$this->assertEquals($preferences['product_categories'], '99,' . $products->first()->id);
+			$this->assertEquals($preferences['product_categories'], '99,' . $products->pluck('category_id')->implode(','));
 		});
 	}
 }

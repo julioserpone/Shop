@@ -66,9 +66,7 @@ class QueryFilter
     {
         $request = Collection::make($request);
 
-        $allowed = $request->filter(function ($item) {
-            return trim($item) != '';
-        })->intersectKey($this->allowed);
+        $allowed = $request->filter(function ($item) { return trim($item) != ''; })->only(array_keys($this->allowed));
 
         if ($filterable = $this->allowedFeatures($request)) {
             $allowed['features'] = $filterable;

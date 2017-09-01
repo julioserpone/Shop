@@ -31,7 +31,9 @@ class FeaturesCacheRepositoryTest extends TestCase
 
 		$this->app->instance(FeaturesRepositoryContract::class, $mock);
 
-		$this->app->make(FeaturesCacheRepository::class)->filterable();
+		$features = $this->app->make(FeaturesCacheRepository::class)->filterable();
+
+		$this->assertNull($features);
 	}
 
 	/** @test */
@@ -42,6 +44,8 @@ class FeaturesCacheRepositoryTest extends TestCase
 
 		$this->app->instance(FeaturesRepositoryContract::class, $mock);
 
-		$this->app->make(FeaturesCacheRepository::class)->filterableValidationRules();
+		$features = $this->app->make(FeaturesCacheRepository::class)->filterableValidationRules();
+
+		$this->assertCount(0, $features);
 	}
 }

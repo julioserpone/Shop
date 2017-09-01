@@ -28,10 +28,11 @@ class CategoriesCacheRepositoryTest extends TestCase
 	{
 		$mock = m::mock(CategoryRepositoryContract::class);
 		$mock->shouldReceive('categoriesWithProducts')->once();
-
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts();
+		$categories = $this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts();
+
+		$this->assertNull($categories); //need to come back here!
 	}
 
 	/** @test */
@@ -42,10 +43,12 @@ class CategoriesCacheRepositoryTest extends TestCase
 
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts([
+		$categories = $this->app->make(CategoriesCacheRepository::class)->categoriesWithProducts([
 			'name' => 'acc',
 			'description' => 'ar',
 		]);
+
+		$this->assertNull($categories); //need to come back here!
 	}
 
 	/** @test */
@@ -56,6 +59,8 @@ class CategoriesCacheRepositoryTest extends TestCase
 
 		$this->app->instance(CategoryRepositoryContract::class, $mock);
 
-		$this->app->make(CategoriesCacheRepository::class)->childrenOf(1);
+		$categories = $this->app->make(CategoriesCacheRepository::class)->childrenOf(1);
+
+		$this->assertNull($categories); //need to come back here!
 	}
 }

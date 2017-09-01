@@ -79,12 +79,14 @@ class PreferencesParserTest extends TestCase
 			->update('my_searches', $products)
 			->toArray();
 
-		$this->assertTrue(isset($preferences['my_searches']));
+		$productCategoriesIds = $products->pluck('category_id')->implode(',');
+
+		$this->assertEquals($preferences['product_categories'], '8,9,' . $productCategoriesIds);
 		$this->assertEquals($preferences['my_searches'], 'ccc,ddd,aaa,bbb');
-		$this->assertEquals($preferences['product_categories'], '8,9,1');
 		$this->assertTrue(trim($preferences['product_purchased']) == '');
 		$this->assertTrue(trim($preferences['product_shared']) == '');
 		$this->assertTrue(trim($preferences['product_viewed']) == '');
+		$this->assertTrue(isset($preferences['my_searches']));
 	}
 
 	public function test_it_rejects_keys_that_are_not_allowed()
