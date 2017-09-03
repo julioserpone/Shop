@@ -9,19 +9,17 @@
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Support;
+namespace Antvel\User\Events;
 
-use Illuminate\Support\Facades\Event;
-
-class EventsRegistrar
+trait EventMap
 {
-	 /**
-     * The event listener mappings for the application.
+	/**
+     * All of the Antvel User event / listener mappings.
      *
      * @var array
      */
-    protected $listen = [
-        \Antvel\User\Events\ProfileWasUpdated::class => [
+    protected $events = [
+		\Antvel\User\Events\ProfileWasUpdated::class => [
             \Antvel\User\Listeners\UpdateProfile::class,
             \Antvel\User\Listeners\SendNewEmailConfirmation::class,
         ],
@@ -30,18 +28,4 @@ class EventsRegistrar
             \Antvel\Features\Listeners\UpdateFeatureName::class,
         ],
     ];
-
-    /**
-     * Registers the antvel events and listeners.
-     *
-     * @return void
-     */
-	public function registrar()
-	{
-		foreach ($this->listen as $event => $listeners) {
-            foreach ($listeners as $listener) {
-                Event::listen($event, $listener);
-            }
-        }
-	}
 }

@@ -16,6 +16,13 @@ use Antvel\Product\Models\Product;
 
 class SearchTest extends TestCase
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->app->make('router')->get('productsSearch', '\Antvel\Product\SearchController@index');
+	}
+
 	/** @test */
 	function it_can_search()
 	{

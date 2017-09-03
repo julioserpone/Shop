@@ -1,8 +1,19 @@
 <?php
 
-namespace Antvel\Http\Middleware;
+/*
+ * This file is part of the Antvel Shop package.
+ *
+ * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
+
+namespace Antvel\User\Http\Middleware;
 
 use Closure;
+use Antvel\User\Models\User;
 
 class Managers
 {
@@ -35,6 +46,6 @@ class Managers
      */
     protected function isAuthorized($user)
     {
-        return $user->can('manage-store', \Antvel\User\Models\User::class);
+        return $user->can('manage-store', User::class);
     }
 }

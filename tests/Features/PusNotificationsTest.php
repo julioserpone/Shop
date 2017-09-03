@@ -17,6 +17,13 @@ use Illuminate\Notifications\DatabaseNotification;
 
 class PusNotificationsTest extends TestCase
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->app->make('router')->resource('push', '\Antvel\User\Http\PushNotificationsController');
+	}
+
 	/** @test */
 	function a_guest_is_not_allowed_to_see_user_notifications()
 	{

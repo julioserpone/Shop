@@ -11,19 +11,20 @@
 
 namespace Antvel;
 
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class AntvelServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap the application services.
+     * Bootstrap any application services.
      *
      * @return void
      */
     public function boot()
     {
-        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'antvel');
+        $this->registerRoutes();
+        $this->registerResources();
     }
 
     /**
@@ -34,9 +35,31 @@ class AntvelServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerServices();
-        $this->registerMiddlewares();
+        $this->registerProviders();
         $this->registerServicesAliases();
-        $this->registerAntvelProviders();
+    }
+
+    /**
+     * Register the Antvel resources.
+     *
+     * @return void
+     */
+    protected function registerResources()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'antvel');
+    }
+
+    /**
+     * Register the Antvel routes.
+     *
+     * @return void
+     */
+    protected function registerRoutes()
+    {
+        Route::namespace('Antvel')->middleware('web')->group(function () {
+            $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
+        });
     }
 
     /**
@@ -51,16 +74,6 @@ class AntvelServiceProvider extends ServiceProvider
                 ? $this->app->singleton($value)
                 : $this->app->singleton($key, $value);
         }
-    }
-
-    /**
-     * Register Antvel middlewares.
-     *
-     * @return void
-     */
-    protected function registerMiddlewares()
-    {
-        $this->app['router']->aliasMiddleware('managers', Http\Middleware\Managers::class);
     }
 
     /**
@@ -80,7 +93,7 @@ class AntvelServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerAntvelProviders()
+    protected function registerProviders()
     {
         foreach (Antvel::providers() as $provider) {
             $this->app->register($provider);

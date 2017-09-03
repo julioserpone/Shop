@@ -11,10 +11,15 @@
 
 namespace Antvel\User;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Events\Dispatcher;
 
 class UsersServiceProvider extends ServiceProvider
 {
+    use Events\EventMap,
+        Policies\PolicyMap;
+
     /**
      * Check whether the user model was swapped.
      *
@@ -29,7 +34,9 @@ class UsersServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->swapUserModel();
+        $this->registerEvents();
+        $this->registerPolicies();
+        $this->registerUserModel();
     }
 
     /**
@@ -39,7 +46,35 @@ class UsersServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->registerMiddlewares();
+    }
+
+    /**
+     * Register the User Antvel events.
+     *
+     * @return void
+     */
+    protected function registerEvents()
+    {
+        $events = $this->app->make(Dispatcher::class);
+
+        foreach ($this->events as $event => $listeners) {
+            foreach ($listeners as $listener) {
+                $events->listen($event, $listener);
+            }
+        }
+    }
+
+    /**
+     * Register the antvel policies.
+     *
+     * @return void
+     */
+    protected function registerPolicies()
+    {
+        foreach ($this->policies as $model => $policy) {
+            Gate::policy($model, $policy);
+        }
     }
 
     /**
@@ -47,12 +82,22 @@ class UsersServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function swapUserModel()
+    protected function registerUserModel()
     {
         if (! self::$userModelWasSwapped) {
             $this->app->make('config')->set('auth.providers.users.model', Models\User::class);
             self::$userModelWasSwapped = true;
         }
+    }
+
+    /**
+     * Register Antvel middlewares for user policies.
+     *
+     * @return void
+     */
+    protected function registerMiddlewares()
+    {
+        $this->app->make('router')->aliasMiddleware('managers', Http\Middleware\Managers::class);
     }
 
     /**
