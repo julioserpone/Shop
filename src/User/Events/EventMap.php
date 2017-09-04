@@ -19,6 +19,10 @@ trait EventMap
      * @var array
      */
     protected $events = [
+        \Illuminate\Notifications\Events\NotificationSent::class => [
+            \Antvel\User\Listeners\UpdateNotificationType::class
+        ],
+
 		\Antvel\User\Events\ProfileWasUpdated::class => [
             \Antvel\User\Listeners\UpdateProfile::class,
             \Antvel\User\Listeners\SendNewEmailConfirmation::class,

@@ -21,13 +21,6 @@ class UsersServiceProvider extends ServiceProvider
         Policies\PolicyMap;
 
     /**
-     * Check whether the user model was swapped.
-     *
-     * @var boolean
-     */
-    protected static $userModelWasSwapped = false;
-
-    /**
      * Bootstrap the application services.
      *
      * @return void
@@ -36,7 +29,6 @@ class UsersServiceProvider extends ServiceProvider
     {
         $this->registerEvents();
         $this->registerPolicies();
-        $this->registerUserModel();
     }
 
     /**
@@ -74,19 +66,6 @@ class UsersServiceProvider extends ServiceProvider
     {
         foreach ($this->policies as $model => $policy) {
             Gate::policy($model, $policy);
-        }
-    }
-
-    /**
-     * Swap the application user model with the one provided by Antvel.
-     *
-     * @return void
-     */
-    protected function registerUserModel()
-    {
-        if (! self::$userModelWasSwapped) {
-            $this->app->make('config')->set('auth.providers.users.model', Models\User::class);
-            self::$userModelWasSwapped = true;
         }
     }
 
