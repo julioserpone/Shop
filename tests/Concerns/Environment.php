@@ -20,7 +20,7 @@ trait Environment
      */
     protected function loadMigrations()
     {
-        $this->artisan('migrate:refresh');
+        $this->artisan('migrate:fresh');
     }
 
     /**

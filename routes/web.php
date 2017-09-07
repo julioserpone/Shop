@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::namespace('Company')->middleware('web')->group(function ($router) {
+	$router->name('about')->get('about/{section?}', 'AboutController@index');
+
+	$router->name('contact.store')->post('contact', 'ContactController@store');
+	$router->name('contact')->get('contact', 'ContactController@create');
+});
+
 Route::namespace('Support\Images')->group(function ($router) {
 	$router->get('images/{file?}', 'RenderController@index')->where('file', '(.*)')->name('images2');
 });

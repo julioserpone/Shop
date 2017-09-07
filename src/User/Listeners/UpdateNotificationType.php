@@ -63,7 +63,7 @@ class UpdateNotificationType
      */
     public function handle(NotificationSent $event)
     {
-        if ($event->response->notifiable_type !== $this->userModelProvider) {
+        if (! is_null($event->response) && $event->response->notifiable_type !== $this->userModelProvider) {
             $event->response->notifiable_type = $this->userModelProvider;
             $event->response->save();
         }

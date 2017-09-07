@@ -18,7 +18,7 @@ class Antvel
      *
      * @var string
      */
-    const VERSION = '1.2.15';
+    const VERSION = '1.2.16';
 
     /**
      * All of the service bindings for Antvel.
@@ -56,6 +56,8 @@ class Antvel
     public static function providers()
     {
         return [
+            Categories\CategoriesServiceProvider::class,
+            Company\CompanyServiceProvider::class,
             User\UsersServiceProvider::class,
         ];
     }

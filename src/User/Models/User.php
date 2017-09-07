@@ -11,6 +11,7 @@
 
 namespace Antvel\User\Models;
 
+use Antvel\Orders\Models\Order;
 use Antvel\Product\Models\Product;
 use Illuminate\Notifications\Notifiable;
 use Antvel\User\Parsers\PreferencesParser;
@@ -190,6 +191,30 @@ class User extends Authenticatable
     // ======================================= //
     //        temporary while refactoring      //
     // ======================================= //
+
+    /**
+     * The user's orders. | while refactoring
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    /**
+     * The user's shopping cart. | while refactoring
+     *
+     * @return mixed
+     */
+    public function shoppingCart()
+    {
+        $shoppingCart = $this->orders()->with('details')
+            ->where('type', 'cart')
+            ->first();
+
+        return is_null($shoppingCart) ? collect() : $shoppingCart->details;
+    }
 
     public function getCartCount()
     {
