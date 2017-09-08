@@ -10,7 +10,7 @@ Route::namespace('Company')->middleware('web')->group(function ($router) {
 });
 
 Route::namespace('Support\Images')->group(function ($router) {
-	$router->get('images/{file?}', 'RenderController@index')->where('file', '(.*)')->name('images2');
+	$router->get('images/{file?}', 'RenderController@index')->where('file', '(.*)')->name('images');
 });
 
 Route::namespace('User')->middleware('auth')->group(function ($router) {

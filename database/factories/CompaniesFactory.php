@@ -24,7 +24,7 @@ $factory->define(Company::class, function (Faker $faker) use ($factory)
         'name' => 'Antvel e-commerce',
         'description' => 'Laravel e-commerce solution.',
         'email' => 'gocanto@' . $domain,
-        'logo' => '/img/pt-default/'.$faker->unique()->numberBetween(1, 330).'.jpg',
+        'logo' => '/images/pt-default/'.$faker->unique()->numberBetween(1, 330).'.jpg',
         'slogan' => $faker->catchPhrase,
         'status' => true,
         'default' => false,

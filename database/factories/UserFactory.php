@@ -26,7 +26,7 @@ $factory->define(User::class, function (Faker $faker) use ($factory)
         'phone_number' => str_limit($faker->e164PhoneNumber, 20),
         'gender' => $faker->randomElement(['male', 'female']),
         'birthday' => $faker->dateTimeBetween('-40 years', '-16 years'),
-        'pic_url' => '/img/pt-default/'.$faker->numberBetween(1, 20).'.jpg',
+        'pic_url' => '/images/pt-default/'.$faker->numberBetween(1, 20).'.jpg',
         'facebook' => str_limit($faker->userName, 100),
         'twitter' => '@' . str_limit($faker->userName, 100),
         'preferences' => '{"product_viewed":"","product_purchased":"","product_shared":"","product_categories":"","my_searches":""}',

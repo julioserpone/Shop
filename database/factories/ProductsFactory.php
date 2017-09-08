@@ -49,7 +49,7 @@ $factory->define(ProductPictures::class, function (Faker $faker) use ($factory)
         'product_id' => function () {
             return factory(Product::class)->create()->id;
         },
-        'path' => '/img/pt-default/' . $faker->numberBetween(1, 330) . '.jpg',
+        'path' => '/images/pt-default/' . $faker->numberBetween(1, 330) . '.jpg',
     ];
 });
 
@@ -58,7 +58,7 @@ $factory->state(ProductPictures::class, 'default', function ($faker) {
         'product_id' => function () {
             return factory(Product::class)->create()->id;
         },
-        'path' => '/img/pt-default/' . $faker->numberBetween(1, 330) . '.jpg',
+        'path' => '/images/pt-default/' . $faker->numberBetween(1, 330) . '.jpg',
         'default' => true
     ];
 });
@@ -88,6 +88,3 @@ if (! function_exists('products_factory_user')) {
         return $user;
     }
 }
-
-
-
