@@ -56,6 +56,15 @@ class User extends Authenticatable
     protected $hidden = ['password', 'remember_token'];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'verified' => 'boolean',
+    ];
+
+    /**
      * An user has many products.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -184,6 +193,27 @@ class User extends Authenticatable
     public function getHasPhoneAttribute()
     {
         return ! is_null($this->phone_number);
+    }
+
+    /**
+     * Confirms the user related to the given token & email.
+     *
+     * @param string $token
+     * @param string $email
+     *
+     * @return self
+     */
+    public static function confirm(string $token, string $email)
+    {
+        $user = static::where('confirmation_token', $token)
+            ->where('verified', false)
+            ->where('email', $email)
+            ->firstOrFail();
+
+        $user->verified = true;
+        $user->save();
+
+        return $user;
     }
 
 

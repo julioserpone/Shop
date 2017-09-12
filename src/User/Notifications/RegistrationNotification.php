@@ -16,7 +16,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class Registration extends Notification implements ShouldQueue
+class RegistrationNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
