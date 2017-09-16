@@ -12,7 +12,7 @@
 namespace Antvel\Categories\Models;
 
 use Illuminate\Support\Arr;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Antvel\Product\Models\Product;
 use Antvel\Support\Images\Uploadable;
 use Illuminate\Database\Eloquent\Model;

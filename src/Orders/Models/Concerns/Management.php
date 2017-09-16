@@ -11,13 +11,13 @@
 
 namespace Antvel\Orders\Models\Concerns;
 
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Antvel\Product\Models\Product;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
 use Antvel\Orders\Models\OrderDetail;
 use Antvel\AddressBook\Models\Address;
-use Antvel\User\Notifications\OrderWasUpdated;
+use Antvel\Users\Notifications\OrderWasUpdated;
 use Antvel\Product\Repositories\ProductsRepository;
 
 trait Management

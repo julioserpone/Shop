@@ -59,7 +59,7 @@ class SuggestionsTest extends TestCase
 	/** @test */
 	function it_suggests_products_based_on_a_given_user_preference_key()
 	{
-		$user = factory('Antvel\User\Models\User')->make([
+		$user = factory('Antvel\Users\Models\User')->make([
 			'preferences' => '{"my_searches":"incidunt,et,qui"}'
 		]);
 

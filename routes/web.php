@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::namespace('Company')->middleware('web')->group(function ($router) {
+Route::namespace('Companies')->middleware('web')->group(function ($router) {
 	$router->name('about')->get('about/{section?}', 'AboutController@index');
 
 	$router->name('contact.store')->post('contact', 'ContactController@store');
@@ -13,14 +13,14 @@ Route::namespace('Support\Images')->group(function ($router) {
 	$router->get('images/{file?}', 'RenderController@index')->where('file', '(.*)')->name('images');
 });
 
-Route::namespace('User')->middleware('auth')->group(function ($router) {
-	$router->resource('user', 'UsersController');
+Route::namespace('Users')->middleware('auth')->group(function ($router) {
+	$router->resource('user', 'Http\ProfileController');
     $router->resource('push', 'Http\PushNotificationsController');
     $router->resource('notifications', 'Http\NotificationsController');
 
     Route::prefix('user/security')->group(function ($router) {
-        $router->get('confirmEmail/{token}/{email}', 'SecurityController@confirmEmail')->name('user.email');
-        $router->patch('{action}/{user?}', 'SecurityController@update')->name('user.action');
+        $router->get('confirmEmail/{token}/{email}', 'Http\SecurityController@confirmEmail')->name('user.email');
+        $router->patch('{action}', 'Http\SecurityController@update')->name('user.action');
     });
 });
 
@@ -37,7 +37,6 @@ Route::namespace('Product')->group(function ($router) {
 Route::prefix('dashboard')->middleware(['auth', 'managers'])->group(function ($router) {
 	//Main
     $router->get('/', 'Categories\CategoriesController@index')->name('dashboard.home');
-	$router->get('dashboard', 'Categories\CategoriesController@index')->name('dashboard.home');
 
 	//Categories
 	$router->resource('categories', 'Categories\CategoriesController');

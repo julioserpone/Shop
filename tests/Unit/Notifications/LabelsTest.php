@@ -12,7 +12,7 @@
 namespace Antvel\Tests\Unit\Notifications;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
 use Antvel\Notifications\Parsers\{ Label, Templates };
 

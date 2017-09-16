@@ -10,7 +10,7 @@
  */
 
 use Carbon\Carbon;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Notifications\DatabaseNotification;
 

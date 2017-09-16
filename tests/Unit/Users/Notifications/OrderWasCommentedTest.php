@@ -12,9 +12,9 @@
 namespace Antvel\Tests\Unit\UsersNotifications;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Antvel\Notifications\Parsers\Label;
-use Antvel\User\Notifications\OrderWasCommented;
+use Antvel\Users\Notifications\OrderWasCommented;
 
 class OrderWasCommentedTest extends TestCase
 {

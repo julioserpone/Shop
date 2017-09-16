@@ -12,8 +12,8 @@
 namespace Antvel\Tests\Unit\Users\Parsers;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Preferences;
-use Antvel\User\Parsers\PreferencesParser;
+use Antvel\Users\Preferences;
+use Antvel\Users\Parsers\PreferencesParser;
 
 class PreferencesParserTest extends TestCase
 {

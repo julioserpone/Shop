@@ -18,9 +18,9 @@ class AddressBookTest extends TestCase
     /** @test */
     function an_address_belongs_to_a_user()
     {
-        $user = factory('Antvel\User\Models\User')->create();
+        $user = factory('Antvel\Users\Models\User')->create();
         $address = factory('Antvel\AddressBook\Models\Address')->create(['user_id' => $user->id]);
 
-        $this->assertInstanceOf('Antvel\User\Models\User', $address->user);
+        $this->assertInstanceOf('Antvel\Users\Models\User', $address->user);
     }
 }

@@ -23,7 +23,7 @@ trait InteractWithUsers
      */
     protected function signIn($attr = [])
     {
-        $user = factory('Antvel\User\Models\User')->create($attr);
+        $user = factory('Antvel\Users\Models\User')->create($attr);
 
         $this->actingAs($user);
 
@@ -40,7 +40,7 @@ trait InteractWithUsers
      */
     protected function signInAs($state, $attr = [])
     {
-        $user = factory('Antvel\User\Models\User')->states($state)->create($attr);
+        $user = factory('Antvel\Users\Models\User')->states($state)->create($attr);
 
         $this->actingAs($user);
 

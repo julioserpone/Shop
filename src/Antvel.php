@@ -57,8 +57,8 @@ class Antvel
     {
         return [
             Categories\CategoriesServiceProvider::class,
-            Company\CompanyServiceProvider::class,
-            User\UsersServiceProvider::class,
+            Companies\CompanyServiceProvider::class,
+            Users\UsersServiceProvider::class,
         ];
     }
 

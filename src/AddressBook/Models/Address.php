@@ -11,7 +11,7 @@
 
 namespace Antvel\AddressBook\Models;
 
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

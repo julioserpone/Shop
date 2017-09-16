@@ -11,7 +11,7 @@
 
 namespace Antvel\Product\Models;
 
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Antvel\Categories\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 
@@ -209,10 +209,6 @@ class Product extends Model
     }
 
     /////////// while refactoring
-    public function details()
-    {
-        return $this->hasMany('App\OrderDetail');
-    }
 
     public function getNumOfReviewsAttribute()
     {

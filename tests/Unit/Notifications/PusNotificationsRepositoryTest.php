@@ -12,9 +12,9 @@
 namespace Antvel\Tests\Unit\Notifications;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
-use Antvel\User\Repositories\PusNotificationsRepository;
+use Antvel\Users\Repositories\PusNotificationsRepository;
 
 class PusNotificationsRepositoryTest extends TestCase
 {

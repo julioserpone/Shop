@@ -12,8 +12,8 @@
 namespace Antvel\Tests\Unit\Integrations;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
-use Antvel\User\Policies\UserPolicy;
+use Antvel\Users\Models\User;
+use Antvel\Users\Policies\UserPolicy;
 use Illuminate\Contracts\Auth\Access\Gate;
 
 class RegisterUserPoliciesTest extends TestCase

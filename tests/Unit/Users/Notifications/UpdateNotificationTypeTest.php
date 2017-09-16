@@ -12,8 +12,8 @@
 namespace Antvel\Tests\Unit\UsersNotifications;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
-use Antvel\User\Listeners\UpdateNotificationType;
+use Antvel\Users\Models\User;
+use Antvel\Users\Listeners\UpdateNotificationType;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\Events\NotificationSent;
 

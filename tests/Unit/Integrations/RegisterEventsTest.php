@@ -21,7 +21,7 @@ class RegisterEventsTest extends TestCase
 
     	$this->events = [
     		\Antvel\Features\Events\FeatureNameWasUpdated::class,
-    		\Antvel\User\Events\ProfileWasUpdated::class,
+    		\Antvel\Users\Events\ProfileWasUpdated::class,
     	];
     }
 

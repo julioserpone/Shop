@@ -11,28 +11,24 @@
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
-use Antvel\Company\Models\Company;
+use Antvel\Companies\Models\Company;
 
 $factory->define(Company::class, function (Faker $faker) use ($factory)
 {
-    $name = str_replace('-', ' ', $faker->unique()->company);
-    $username = str_replace([' ', ','], '', $name);
-    $domain = $username . $faker->randomElement(['.com', '.net', '.org']);
-
     return [
         //Profile information
         'name' => 'Antvel e-commerce',
         'description' => 'Laravel e-commerce solution.',
-        'email' => 'gocanto@' . $domain,
-        'logo' => '/images/pt-default/'.$faker->unique()->numberBetween(1, 330).'.jpg',
+        'email' => $faker->unique()->safeEmail,
+        'logo' => '/images/pt-default/' . $faker->unique()->numberBetween(1, 330) . '.jpg',
         'slogan' => $faker->catchPhrase,
         'status' => true,
         'default' => false,
 
         //Contact information
-        'contact_email' => 'contact@' . $domain,
-        'sales_email' => 'sales@' . $domain,
-        'support_email' => 'support@' . $domain,
+        'contact_email' => $faker->unique()->safeEmail,
+        'sales_email' => $faker->unique()->safeEmail,
+        'support_email' => $faker->unique()->safeEmail,
         'phone_number' => $faker->e164PhoneNumber,
         'cell_phone' => $faker->e164PhoneNumber,
         'address' => $faker->streetAddress,
@@ -57,7 +53,7 @@ $factory->define(Company::class, function (Faker $faker) use ($factory)
 
 $factory->state(Company::class, 'default', function ($faker) {
     return [
-        'name' => 'Antvel e-commerce',
+        'name' => 'Antvel e-commerce (default)',
         'description' => 'Laravel e-commerce solution.',
         'default' => true
     ];

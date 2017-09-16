@@ -11,10 +11,11 @@
 
 namespace Antvel\Tests\Unit\Users;
 
-use Antvel\User\Models\User;
+use Antvel\Tests\TestCase;
+use Antvel\Users\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
 
-class UserNotificationsTest extends UsersTestCase
+class UserNotificationsTest extends TestCase
 {
 	/** @test */
 	function an_authorized_user_can_mark_a_given_notification_as_read()

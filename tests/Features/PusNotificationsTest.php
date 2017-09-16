@@ -12,7 +12,7 @@
 namespace Antvel\Tests\Features;
 
 use Antvel\Tests\TestCase;
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
 
 class PusNotificationsTest extends TestCase
@@ -21,7 +21,7 @@ class PusNotificationsTest extends TestCase
 	{
 		parent::setUp();
 
-		$this->app->make('router')->resource('push', '\Antvel\User\Http\PushNotificationsController');
+		$this->app->make('router')->resource('push', '\Antvel\Users\Http\PushNotificationsController');
 	}
 
 	/** @test */

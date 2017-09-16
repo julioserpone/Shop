@@ -11,7 +11,7 @@
 
 namespace Antvel\Orders\Models;
 
-use Antvel\User\Models\User;
+use Antvel\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
 use Antvel\Comments\Models\Comment;

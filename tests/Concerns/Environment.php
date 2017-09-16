@@ -42,7 +42,7 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('auth.providers.users.model', \Antvel\User\Models\User::class);
+        $app['config']->set('auth.providers.users.model', \Antvel\Users\Models\User::class);
         $app['config']->set('app.key', $this->generateRandomKey($app));
         $app['path.lang'] = $this->getFixturesDirectory('lang');
         $app['path.storage'] = __DIR__ . "/../../storage";

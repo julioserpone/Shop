@@ -14,7 +14,7 @@ namespace Antvel\Product\Suggestions;
 use Illuminate\Support\Collection;
 use Antvel\Product\Models\Product;
 use Illuminate\Support\Facades\Auth;
-use Antvel\User\Parsers\PreferencesParser;
+use Antvel\Users\Parsers\PreferencesParser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Suggest
