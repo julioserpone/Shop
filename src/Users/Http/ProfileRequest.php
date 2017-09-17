@@ -31,9 +31,7 @@ class ProfileRequest extends FormRequest
      */
     public function authorize() : bool
     {
-        return $this->user()->is($this->user())
-            && $this->user() !== null
-            && $this->isAllowed();
+        return Auth::check() && Auth::user()->is($this->user()) && $this->isAllowed();
     }
 
     /**
@@ -68,7 +66,7 @@ class ProfileRequest extends FormRequest
      */
     protected function rulesForProfile() : array
     {
-      return [
+        return [
             'first_name' => 'required',
             'last_name' => 'required',
             'gender' => 'required',

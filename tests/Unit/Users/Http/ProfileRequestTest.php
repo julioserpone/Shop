@@ -125,8 +125,6 @@ class ProfileRequestTest extends TestCase
 		});
 	}
 
-
-
 	/** @test */
 	function the_user_nickname_is_required()
 	{
