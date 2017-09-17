@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Antvel\Users\Models\EmailChangePetition;
-use Illuminate\Contracts\Auth\Authenticatable;
 
 class NewEmailConfirmation extends Mailable implements ShouldQueue
 {

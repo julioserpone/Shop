@@ -11,18 +11,18 @@
 
 namespace Antvel\Users\Http;
 
-use Antvel\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Http\FormRequest;
 
-class ProfileRequest extends Request
+class ProfileRequest extends FormRequest
 {
     /**
      * The allowed form references.
      *
      * @var array
      */
-    protected $allowedReferral = ['profile', 'social', 'account', 'upload'];
+    protected $allowedReferral = ['profile', 'social', 'account'];
 
     /**
      * Determine if the user is authorized to make this request.
@@ -31,7 +31,9 @@ class ProfileRequest extends Request
      */
     public function authorize() : bool
     {
-        return Auth::check() && Auth::user()->is($this->user()) && $this->isAllowed();
+        return $this->user()->is($this->user())
+            && $this->user() !== null
+            && $this->isAllowed();
     }
 
     /**
@@ -71,14 +73,19 @@ class ProfileRequest extends Request
             'last_name' => 'required',
             'gender' => 'required',
             'email' => [
+                Rule::unique('users')->ignore(Auth::user()->id),
                 'required',
                 'email',
-                Rule::unique('users')->ignore(Auth::user()->id),
             ],
             'nickname' => [
+                Rule::unique('users')->ignore(Auth::user()->nickname, 'nickname'),
                 'required',
                 'max:20',
-                Rule::unique('users')->ignore(Auth::user()->nickname, 'nickname'),
+            ],
+            'pictures.storing' => [
+                Rule::dimensions()->maxWidth(500)->maxHeight(500),
+                'mimes:jpeg,png,jpg',
+                'image',
             ],
         ];
     }
@@ -112,19 +119,14 @@ class ProfileRequest extends Request
     }
 
     /**
-     * Returns validation rules for the form profile.
+     * Get custom messages for validator errors.
      *
      * @return array
      */
-    protected function rulesForUpload() : array
+    public function messages()
     {
-        return [];
-        // return [
-        //     'file' => [
-        //         'required',
-        //         'image',
-        //         Rule::dimensions()->maxWidth(600)->maxHeight(600),
-        //     ],
-        // ];
+        return [
+            'pictures.storing.*' => trans('user.validation_errors.avatar')
+        ];
     }
 }
