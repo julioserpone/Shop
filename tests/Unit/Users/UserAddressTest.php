@@ -25,9 +25,9 @@ class UserAddressTest extends TestCase
             'zipcode' => '2006',
             'state' => 'Carabobo',
             'country' => 'Venezuela',
-            'phone' => '+ 1 405 669 00 00',
+            'phone' => '+ 58 424 432 38 83',
             'name_contact' => 'Julio Hernández',
-            'line1' => 'Urbanizacion El Remanso',
+            'line1' => 'Urbanización El Remanso',
             'line2' => 'Lote 22A Casa Número 4',
         ]);
     }
@@ -56,7 +56,7 @@ class UserAddressTest extends TestCase
         $this->assertEquals('+ 58 424 432 38 83', $address->phone);
         $this->assertEquals('Julio Hernández', $address->name_contact);
         $this->assertSame($user->id, $address->user_id);
-        $this->assertEquals('Urbanizacion El Remanso', $address->line1);
+        $this->assertEquals('Urbanización El Remanso', $address->line1);
         $this->assertEquals('Lote 22A Casa Número 4', $address->line2);
         $this->assertTrue($address->fresh()->default);
 	}
