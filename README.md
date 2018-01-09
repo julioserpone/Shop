@@ -2,9 +2,9 @@
 
 
 
-<a href="https://packagist.org/packages/ant-vel/Shop"><img src="https://img.shields.io/packagist/dt/antvel/shop.svg" alt="Total Downloads"></a>
-<a href="https://travis-ci.org/ant-vel/Shop"><img src="https://travis-ci.org/ant-vel/Shop.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/ant-vel/Shop"><img src="https://img.shields.io/packagist/v/antvel/shop.svg" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/julioserpone/epikfy-shop"><img src="https://img.shields.io/packagist/dt/julioserpone/epikfy-framework.svg" alt="Total Downloads"></a>
+<a href="https://travis-ci.org/julioserpone/epikfy-framework"><img src="https://api.travis-ci.org/julioserpone/epikfy-framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/ant-vel/Shop"><img src="https://img.shields.io/packagist/v/julioserpone/epikfy-framework.svg" alt="Latest Stable Version"></a>
 
 
 
