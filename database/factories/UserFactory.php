@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,8 +11,8 @@
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
-use Antvel\Users\Policies\Roles;
-use Antvel\Users\Models\{ User, EmailChangePetition };
+use Epikfy\Users\Policies\Roles;
+use Epikfy\Users\Models\{ User, EmailChangePetition };
 
 $factory->define(User::class, function (Faker $faker) use ($factory)
 {
@@ -38,8 +38,8 @@ $factory->state(User::class, 'admin', function ($faker) {
     return [
         'first_name' => 'Admin',
         'last_name' => 'Admin',
-        'email' => 'admin@antvel.com',
-        'nickname' => 'antvel',
+        'email' => 'admin@epikfy.com',
+        'nickname' => 'Epikfy',
         'role' => 'admin',
     ];
 });
@@ -48,7 +48,7 @@ $factory->state(User::class, 'seller', function ($faker) {
     return [
         'first_name' => 'Seller',
         'last_name' => 'Seller',
-        'email' => 'seller@antvel.com',
+        'email' => 'seller@wpikfy.com',
         'nickname' => 'seller',
         'role' => 'seller',
     ];
@@ -58,7 +58,7 @@ $factory->state(User::class, 'customer', function ($faker) {
     return [
         'first_name' => 'Customer',
         'last_name' => 'Customer',
-        'email' => 'customer@antvel.com',
+        'email' => 'customer@wpikfy.com',
         'nickname' => 'customer',
         'role' => 'customer',
     ];

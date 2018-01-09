@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\UsersNotifications;
+namespace Epikfy\Tests\Unit\UsersNotifications;
 
-use Antvel\Tests\TestCase;
-use Antvel\Users\Models\User;
-use Antvel\Notifications\Parsers\Label;
-use Antvel\Users\Notifications\OrderWasUpdated;
+use Epikfy\Tests\TestCase;
+use Epikfy\Users\Models\User;
+use Epikfy\Notifications\Parsers\Label;
+use Epikfy\Users\Notifications\OrderWasUpdated;
 
 class OrderWasUpdatedTest extends TestCase
 {
@@ -22,7 +22,7 @@ class OrderWasUpdatedTest extends TestCase
 	{
 		parent::setUp();
 
-		$this->routes = [ //while refactoring Antvel orders component.
+		$this->routes = [ //while refactoring Epikfy orders component.
 			'seller' => 'orders.show_seller_order',
 			'customer' => 'orders.show_order',
 		];
@@ -41,7 +41,7 @@ class OrderWasUpdatedTest extends TestCase
 	{
 		$seller = factory(User::class)->states('seller')->create();
 		$customer = factory(User::class)->states('customer')->create();
-		$order = factory('Antvel\Orders\Models\Order')->create(['user_id' => $customer->id, 'seller_id' => $seller->id, 'status' => 'open']);
+		$order = factory('Epikfy\Orders\Models\Order')->create(['user_id' => $customer->id, 'seller_id' => $seller->id, 'status' => 'open']);
 
 		$order->owner->notify(new OrderWasUpdated($order));
 
@@ -63,7 +63,7 @@ class OrderWasUpdatedTest extends TestCase
 	{
 		$seller = factory(User::class)->states('seller')->create();
 		$owner = factory(User::class)->make(['id' => 2]);
-		$order = factory('Antvel\Orders\Models\Order')->make(['id' => 1, 'user_id' => $owner->id, 'seller_id' => $seller->id]);
+		$order = factory('Epikfy\Orders\Models\Order')->make(['id' => 1, 'user_id' => $owner->id, 'seller_id' => $seller->id]);
 
 		$order->seller->notify(new OrderWasUpdated($order));
 

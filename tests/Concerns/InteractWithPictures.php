@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Concerns;
+namespace Epikfy\Tests\Concerns;
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Filesystem\Filesystem;
@@ -25,7 +25,7 @@ trait InteractWithPictures
      *
      * @return UploadedFile
      */
-    public function uploadFile($disk = 'avatars', $file = 'antvel.jpg')
+    public function uploadFile($disk = 'avatars', $file = 'epikfy.jpg')
     {
         $this->withStorageFolder();
 
@@ -42,7 +42,7 @@ trait InteractWithPictures
      *
      * @return UploadedFile
      */
-    public function persistentUpload($disk = 'avatars', $file = 'antvel.jpg')
+    public function persistentUpload($disk = 'avatars', $file = 'epikfy.jpg')
     {
         $this->withStorageFolder();
 

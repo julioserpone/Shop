@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Features;
+namespace Epikfy\Tests\Features;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Models\Product;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Models\Product;
 
 class SearchTest extends TestCase
 {
@@ -20,13 +20,13 @@ class SearchTest extends TestCase
 	{
 		parent::setUp();
 
-		$this->app->make('router')->get('productsSearch', '\Antvel\Product\SearchController@index');
+		$this->app->make('router')->get('productsSearch', '\Epikfy\Product\SearchController@index');
 	}
 
 	/** @test */
 	function it_can_search()
 	{
-		$category = factory('Antvel\Categories\Models\Category')->create(['name' => 'aaa']);
+		$category = factory('Epikfy\Categories\Models\Category')->create(['name' => 'aaa']);
 		factory(Product::class)->create(['name' => 'aaa', 'category_id' => $category->id]);
 		factory(Product::class)->create(['name' => 'bbb']);
 		factory(Product::class)->create(['name' => 'ccc', 'category_id' => $category->id]);

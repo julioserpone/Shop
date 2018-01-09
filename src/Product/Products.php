@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product;
+namespace Epikfy\Product;
 
-use Antvel\Support\Repository;
-use Antvel\Product\Models\Product;
+use Epikfy\Support\Repository;
+use Epikfy\Product\Models\Product;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
-use Antvel\Product\Parsers\FeaturesParser;
+use Epikfy\Product\Parsers\FeaturesParser;
 
 class Products extends Repository
 {
@@ -43,7 +43,7 @@ class Products extends Repository
         $attributes = Collection::make($attributes);
 
         $attr = $attributes->except('features', 'pictures')->merge([
-            'features' => \Antvel\Features\Parser::toJson($attributes->get('features')),
+            'features' => \Epikfy\Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,
@@ -75,7 +75,7 @@ class Products extends Repository
     	$attributes = Collection::make($attributes);
 
     	$attr = $attributes->except('features', 'pictures', 'default_picture')->merge([
-            'features' => \Antvel\Features\Parser::toJson($attributes->get('features')),
+            'features' => \Epikfy\Features\Parser::toJson($attributes->get('features')),
             'category_id' => $attributes->get('category'),
             'price' => $attributes->get('price') * 100,
             'cost' => $attributes->get('cost') * 100,

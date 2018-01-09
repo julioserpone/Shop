@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\QueryFilter;
+namespace Epikfy\Tests\Unit\Products\QueryFilter;
 
-use Antvel\Tests\TestCase;
+use Epikfy\Tests\TestCase;
 use Illuminate\Support\Collection;
-use Antvel\Product\Models\QueryFilter;
+use Epikfy\Product\Models\QueryFilter;
 
 class QueryFilterTest extends TestCase
 {
@@ -57,7 +57,7 @@ class QueryFilterTest extends TestCase
 	/** @test */
 	function it_is_able_to_parse_the_filterable_features_to_be_used_for_a_given_request()
 	{
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
 
 		$query = new QueryFilter(['color' => 'red', 'weight' => '11']);
 

@@ -1,24 +1,24 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Notifications;
+namespace Epikfy\Users\Notifications;
 
-use Antvel\Orders\Models\Order;
-use Antvel\Notifications\Parsers\Label;
+use Epikfy\Orders\Models\Order;
+use Epikfy\Notifications\Parsers\Label;
 use Illuminate\Notifications\Notification;
 
 class OrderWasUpdated extends Notification
 {
     /**
-     * The Antvel order representation.
+     * The Epikfy order representation.
      *
      * @var Order
      */

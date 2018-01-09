@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Features\Listeners;
+namespace Epikfy\Features\Listeners;
 
-use Antvel\Features\Parser;
-use Antvel\Product\Models\Product;
+use Epikfy\Features\Parser;
+use Epikfy\Product\Models\Product;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Antvel\Features\Events\FeatureNameWasUpdated;
+use Epikfy\Features\Events\FeatureNameWasUpdated;
 
 class UpdateFeatureName implements ShouldQueue
 {

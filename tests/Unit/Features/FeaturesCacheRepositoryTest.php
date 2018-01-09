@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Features;
+namespace Epikfy\Tests\Unit\Features;
 
 use Mockery as m;
-use Antvel\Tests\TestCase;
-use Antvel\Contracts\FeaturesRepositoryContract;
-use Antvel\Features\Repositories\FeaturesCacheRepository;
+use Epikfy\Tests\TestCase;
+use Epikfy\Contracts\FeaturesRepositoryContract;
+use Epikfy\Features\Repositories\FeaturesCacheRepository;
 
 class FeaturesCacheRepositoryTest extends TestCase
 {

@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users;
+namespace Epikfy\Users;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -42,7 +42,7 @@ class UsersServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the User Antvel events.
+     * Register the User Epikfy events.
      *
      * @return void
      */
@@ -58,7 +58,7 @@ class UsersServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the antvel policies.
+     * Register the Epikfy policies.
      *
      * @return void
      */
@@ -70,7 +70,7 @@ class UsersServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register Antvel middlewares for user policies.
+     * Register Epikfy middlewares for user policies.
      *
      * @return void
      */
@@ -86,6 +86,6 @@ class UsersServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['antvel-users'];
+        return ['epikfy-users'];
     }
 }

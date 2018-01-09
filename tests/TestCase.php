@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests;
+namespace Epikfy\Tests;
 
 use Orchestra\Testbench\TestCase as Orchestra;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -26,7 +26,7 @@ abstract class TestCase extends Orchestra
      * This db is used just to test the queries related to products filters
      * because SqlLite does not support queries against JSON columns.
      */
-    const TESTING_DB = 'antvel_testing';
+    const TESTING_DB = 'epikfy_testing';
 
     /**
      * Setup the test environment

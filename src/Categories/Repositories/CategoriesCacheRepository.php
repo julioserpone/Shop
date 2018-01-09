@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Categories\Repositories;
+namespace Epikfy\Categories\Repositories;
 
 use Illuminate\Support\Facades\Cache;
-use Antvel\Contracts\CategoryRepositoryContract;
+use Epikfy\Contracts\CategoryRepositoryContract;
 
 class CategoriesCacheRepository implements CategoryRepositoryContract
 {
     /**
-     * The Antvel category repository implementation.
+     * The Epikfy category repository implementation.
      *
      * @var CategoryRepositoryContract
      */

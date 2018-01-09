@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Users\Parsers;
+namespace Epikfy\Tests\Unit\Users\Parsers;
 
-use Antvel\Tests\TestCase;
-use Antvel\Users\Preferences;
-use Antvel\Users\Parsers\PreferencesParser;
+use Epikfy\Tests\TestCase;
+use Epikfy\Users\Preferences;
+use Epikfy\Users\Parsers\PreferencesParser;
 
 class PreferencesParserTest extends TestCase
 {
@@ -71,7 +71,7 @@ class PreferencesParserTest extends TestCase
 	{
 		$userPreferences = '{"my_searches": "aaa,bbb", "product_shared": "", "product_viewed": "", "product_purchased": "", "product_categories": "8,9"}';
 
-		$products = factory('Antvel\Product\Models\Product', 2)->create([
+		$products = factory('Epikfy\Product\Models\Product', 2)->create([
 			'tags' => 'ccc,ddd'
 		]);
 
@@ -93,7 +93,7 @@ class PreferencesParserTest extends TestCase
 	{
 		$userPreferences = '{"not_allowed":"bad", "my_searches": "aaa,bbb", "product_categories": "8,9"}';
 
-		$products = factory('Antvel\Product\Models\Product')->create([
+		$products = factory('Epikfy\Product\Models\Product')->create([
 			'tags' => 'new,tag'
 		]);
 
@@ -158,7 +158,7 @@ class PreferencesParserTest extends TestCase
 	{
 		$current = '{"my_searches":"","product_shared":"","product_viewed":"","product_purchased":"","product_categories":""}';
 
-		$products = factory('Antvel\Product\Models\Product', 100)->make();
+		$products = factory('Epikfy\Product\Models\Product', 100)->make();
 
 		$preferences = PreferencesParser::parse($current)
 			->update('my_searches', $products)

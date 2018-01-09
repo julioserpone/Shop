@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Repositories;
+namespace Epikfy\Tests\Unit\Products\Repositories;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Models\Product;
-use Antvel\Product\Repositories\ProductsRepository;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Models\Product;
+use Epikfy\Product\Repositories\ProductsRepository;
 
 class ProductsRepositoryTest extends TestCase
 {

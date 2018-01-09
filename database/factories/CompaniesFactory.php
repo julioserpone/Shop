@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,13 +11,13 @@
 
 use Carbon\Carbon;
 use Faker\Generator as Faker;
-use Antvel\Companies\Models\Company;
+use Epikfy\Companies\Models\Company;
 
 $factory->define(Company::class, function (Faker $faker) use ($factory)
 {
     return [
         //Profile information
-        'name' => 'Antvel e-commerce',
+        'name' => 'Epikfy e-commerce',
         'description' => 'Laravel e-commerce solution.',
         'email' => $faker->unique()->safeEmail,
         'logo' => '/images/pt-default/' . $faker->unique()->numberBetween(1, 330) . '.jpg',
@@ -37,9 +37,9 @@ $factory->define(Company::class, function (Faker $faker) use ($factory)
         'zip_code' => $faker->postcode,
 
         //Social information
-        'website' => 'http://antvel.com',
-        'twitter' => 'https://twitter.com/_antvel',
-        'facebook' => 'https://www.facebook.com/antvelecommerce',
+        'website' => 'http://www.epikfy.com',
+        'twitter' => 'https://twitter.com/epikfy',
+        'facebook' => 'https://www.facebook.com/epikfy',
 
         //SEO information
         'keywords' => implode(',', $faker->words(20)),
@@ -53,8 +53,8 @@ $factory->define(Company::class, function (Faker $faker) use ($factory)
 
 $factory->state(Company::class, 'default', function ($faker) {
     return [
-        'name' => 'Antvel e-commerce (default)',
-        'description' => 'Laravel e-commerce solution.',
+        'name' => 'Epikfy e-commerce (default)',
+        'description' => 'Laravel e-commerce solution',
         'default' => true
     ];
 });

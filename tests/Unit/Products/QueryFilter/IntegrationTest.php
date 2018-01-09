@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\QueryFilter;
+namespace Epikfy\Tests\Unit\Products\QueryFilter;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Models\Product;
-use Antvel\Categories\Models\Category;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Models\Product;
+use Epikfy\Categories\Models\Category;
 
 class IntegrationTest extends TestCase
 {
@@ -21,7 +21,7 @@ class IntegrationTest extends TestCase
 	{
 		parent::setUp();
 
-		$this->repository = $this->app->make('Antvel\Product\Products');
+		$this->repository = $this->app->make('Epikfy\Product\Products');
 	}
 
 	public function test_it_can_retrieve_products_by_conditions()
@@ -181,8 +181,8 @@ class IntegrationTest extends TestCase
 	{
 		$this->usingMySql();
 
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
 
 	    factory(Product::class)->create(['name' => 'per', 'features' => '{"color": "red", "weight": "11"}']);
 	    factory(Product::class)->create(['name' => 'foo', 'features' => '{"color": "red", "weight": "11"}']);

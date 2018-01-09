@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Listeners;
+namespace Epikfy\Users\Listeners;
 
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\Events\NotificationSent;
@@ -48,7 +48,7 @@ class UpdateNotificationType
         $default = $config->get('auth.providers.users.model');
 
         if (is_null($default) || trim($default) == '') {
-            return \Antvel\Users\Models\User::class;
+            return \Epikfy\Users\Models\User::class;
         }
 
         return $default;

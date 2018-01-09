@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Orders\Models;
+namespace Epikfy\Orders\Models;
 
-use Antvel\Users\Models\User;
+use Epikfy\Users\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\App;
-use Antvel\Comments\Models\Comment;
+use Epikfy\Comments\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 

@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Integrations;
+namespace Epikfy\Tests\Unit\Integrations;
 
-use Antvel\Tests\TestCase;
+use Epikfy\Tests\TestCase;
 
 class RegisterEventsTest extends TestCase
 {
@@ -20,13 +20,13 @@ class RegisterEventsTest extends TestCase
     	parent::setUp();
 
     	$this->events = [
-    		\Antvel\Features\Events\FeatureNameWasUpdated::class,
-    		\Antvel\Users\Events\ProfileWasUpdated::class,
+    		\Epikfy\Features\Events\FeatureNameWasUpdated::class,
+    		\Epikfy\Users\Events\ProfileWasUpdated::class,
     	];
     }
 
 	/** @test */
-	function it_is_able_to_register_the_antvel_events_within_the_application()
+	function it_is_able_to_register_the_Epikfy_events_within_the_application()
 	{
 		$this->app->booted(function () {
 	    	foreach ($this->events as $event) {

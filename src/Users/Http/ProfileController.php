@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Http;
+namespace Epikfy\Users\Http;
 
-use Antvel\Http\Controller;
+use Epikfy\Http\Controller;
 use Illuminate\Http\Request;
-use Antvel\Users\Models\User;
+use Epikfy\Users\Models\User;
 use Illuminate\Support\Facades\Auth;
-use Antvel\Users\Events\ProfileWasUpdated;
+use Epikfy\Users\Events\ProfileWasUpdated;
 
 class ProfileController extends Controller
 {

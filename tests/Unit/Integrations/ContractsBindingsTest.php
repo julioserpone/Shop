@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Integrations;
+namespace Epikfy\Tests\Unit\Integrations;
 
-use Antvel\Tests\TestCase;
-use Antvel\Contracts\CategoryRepositoryContract;
-use Antvel\Contracts\FeaturesRepositoryContract;
-use Antvel\Features\Repositories\FeaturesRepository;
-use Antvel\Categories\Repositories\CategoriesRepository;
+use Epikfy\Tests\TestCase;
+use Epikfy\Contracts\CategoryRepositoryContract;
+use Epikfy\Contracts\FeaturesRepositoryContract;
+use Epikfy\Features\Repositories\FeaturesRepository;
+use Epikfy\Categories\Repositories\CategoriesRepository;
 
 class ContractsBindingsTest extends TestCase
 {

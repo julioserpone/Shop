@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel;
+namespace Epikfy;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class AntvelServiceProvider extends ServiceProvider
+class EpikfyServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
@@ -40,36 +40,36 @@ class AntvelServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register the Antvel resources.
+     * Register the Epikfy resources.
      *
      * @return void
      */
     protected function registerResources()
     {
         $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'antvel');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'epikfy');
     }
 
     /**
-     * Register the Antvel routes.
+     * Register the Epikfy routes.
      *
      * @return void
      */
     protected function registerRoutes()
     {
-        Route::namespace('Antvel')->middleware('web')->group(function () {
+        Route::namespace('Epikfy')->middleware('web')->group(function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
         });
     }
 
     /**
-     * Register Antvel services in the container.
+     * Register Epikfy services in the container.
      *
      * @return void
      */
     protected function registerServices()
     {
-        foreach (Antvel::bindings() as $key => $value) {
+        foreach (Epikfy::bindings() as $key => $value) {
             is_numeric($key)
                 ? $this->app->singleton($value)
                 : $this->app->singleton($key, $value);
@@ -77,25 +77,25 @@ class AntvelServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register Antvel services aliases in the container.
+     * Register Epikfy services aliases in the container.
      *
      * @return void
      */
     protected function registerServicesAliases()
     {
-        foreach (Antvel::alias() as $key => $value) {
+        foreach (Epikfy::alias() as $key => $value) {
             $this->app->alias($value, $key);
         }
     }
 
     /**
-     * Register Antvel services providers.
+     * Register Epikfy services providers.
      *
      * @return void
      */
     protected function registerProviders()
     {
-        foreach (Antvel::providers() as $provider) {
+        foreach (Epikfy::providers() as $provider) {
             $this->app->register($provider);
         }
     }
@@ -107,6 +107,6 @@ class AntvelServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return [Antvel::class];
+        return [Epikfy::class];
     }
 }

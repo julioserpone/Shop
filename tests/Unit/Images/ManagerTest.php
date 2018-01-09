@@ -1,26 +1,26 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Images;
+namespace Epikfy\Tests\Unit\Images;
 
-use Antvel\Tests\TestCase;
+use Epikfy\Tests\TestCase;
 use Illuminate\Support\Facades\Storage;
-use Antvel\Support\Images\Manager;
+use Epikfy\Support\Images\Manager;
 
 class ManagerTest extends TestCase
 {
 	/** @test */
 	function it_can_update_a_string_input()
 	{
-		$current_picture = 'images/foo.jgp';
+		$current_picture = 'images/foo.jpg';
 
 		$data = [
 			'storing' => [
@@ -37,14 +37,14 @@ class ManagerTest extends TestCase
 	/** @test */
 	function it_parses_the_right_data_if_there_was_not_provided_inputs()
 	{
-		$current_picture= 'images/foo.jgp';
+		$current_picture= 'images/foo.jpg';
 
 		$data = [
 			'storing' => []
 		];
 
 		tap(Manager::parse($data)->on('images')->update($current_picture), function ($picture) {
-			$this->assertEquals('images/foo.jgp', $picture['path']);
+			$this->assertEquals('images/foo.jpg', $picture['path']);
 			$this->assertTrue(count($picture) > 0);
 			$this->assertNull($picture['id']);
 		});

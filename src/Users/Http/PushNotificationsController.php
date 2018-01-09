@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Http;
+namespace Epikfy\Users\Http;
 
-use Antvel\Http\Controller;
-use Antvel\Users\Repositories\PusNotificationsRepository;
+use Epikfy\Http\Controller;
+use Epikfy\Users\Repositories\PushNotificationsRepository;
 
 class PushNotificationsController extends Controller
 {
@@ -23,7 +23,7 @@ class PushNotificationsController extends Controller
 	 *
 	 * @return void
 	 */
-	public function index(PusNotificationsRepository $notifications)
+	public function index(PushNotificationsRepository $notifications)
 	{
 		return [
 			'unread' => $notifications->unread(),

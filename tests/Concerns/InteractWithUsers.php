@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Concerns;
+namespace Epikfy\Tests\Concerns;
 
 trait InteractWithUsers
 {
@@ -23,7 +23,7 @@ trait InteractWithUsers
      */
     protected function signIn($attr = [])
     {
-        $user = factory('Antvel\Users\Models\User')->create($attr);
+        $user = factory('Epikfy\Users\Models\User')->create($attr);
 
         $this->actingAs($user);
 
@@ -40,7 +40,7 @@ trait InteractWithUsers
      */
     protected function signInAs($state, $attr = [])
     {
-        $user = factory('Antvel\Users\Models\User')->states($state)->create($attr);
+        $user = factory('Epikfy\Users\Models\User')->states($state)->create($attr);
 
         $this->actingAs($user);
 

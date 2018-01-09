@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Categories\Models;
+namespace Epikfy\Categories\Models;
 
 use Illuminate\Support\Arr;
-use Antvel\Users\Models\User;
-use Antvel\Product\Models\Product;
-use Antvel\Support\Images\Uploadable;
+use Epikfy\Users\Models\User;
+use Epikfy\Product\Models\Product;
+use Epikfy\Support\Images\Uploadable;
 use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model

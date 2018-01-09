@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Companies;
+namespace Epikfy\Companies;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
-use Antvel\Companies\Models\Company;
+use Epikfy\Companies\Models\Company;
 use Illuminate\Support\Collection;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;

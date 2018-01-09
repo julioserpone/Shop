@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Features\Repositories;
+namespace Epikfy\Features\Repositories;
 
 use Illuminate\Support\Facades\Cache;
-use Antvel\Contracts\FeaturesRepositoryContract;
+use Epikfy\Contracts\FeaturesRepositoryContract;
 
 class FeaturesCacheRepository implements FeaturesRepositoryContract
 {
     /**
-     * The Antvel features repository implementation.
+     * The Epikfy features repository implementation.
      *
      * @var FeaturesRepositoryContract
      */

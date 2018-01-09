@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-use Antvel\Users\Models\User;
+use Epikfy\Users\Models\User;
 use Faker\Generator as Faker;
-use Antvel\AddressBook\Models\Address;
+use Epikfy\AddressBook\Models\Address;
 
 $factory->define(Address::class, function (Faker $faker) use ($factory)
 {

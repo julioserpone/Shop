@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
 
-namespace Antvel\Users\Http\Middleware;
+namespace Epikfy\Users\Http\Middleware;
 
 use Closure;
-use Antvel\Users\Models\User;
+use Epikfy\Users\Models\User;
 
 class Managers
 {

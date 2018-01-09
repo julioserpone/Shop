@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Parsers;
+namespace Epikfy\Tests\Unit\Products\Parsers;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Parsers\Breadcrumb;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Parsers\Breadcrumb;
 
 class BreadcrumbParserTest extends TestCase
 {

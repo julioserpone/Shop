@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Models;
+namespace Epikfy\Users\Models;
 
-use Antvel\Support\Images\Uploadable;
+use Epikfy\Support\Images\Uploadable;
 use Illuminate\Notifications\Notifiable;
-use Antvel\Users\Parsers\PreferencesParser;
+use Epikfy\Users\Parsers\PreferencesParser;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Antvel\Users\Notifications\ResetPasswordNotification;
+use Epikfy\Users\Notifications\ResetPasswordNotification;
 
 class User extends Authenticatable
 {

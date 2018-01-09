@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Concerns;
+namespace Epikfy\Tests\Concerns;
 
 trait Environment
 {
@@ -42,7 +42,7 @@ trait Environment
      */
     protected function getEnvironmentSetUp($app)
     {
-        $app['config']->set('auth.providers.users.model', \Antvel\Users\Models\User::class);
+        $app['config']->set('auth.providers.users.model', \Epikfy\Users\Models\User::class);
         $app['config']->set('app.key', $this->generateRandomKey($app));
         $app['path.lang'] = $this->getFixturesDirectory('lang');
         $app['path.storage'] = __DIR__ . "/../../storage";
@@ -82,7 +82,7 @@ trait Environment
     protected function getPackageProviders($app)
     {
         return [
-            \Antvel\AntvelServiceProvider::class
+            \Epikfy\EpikfyServiceProvider::class
         ];
     }
 

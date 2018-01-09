@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Requests;
+namespace Epikfy\Product\Requests;
 
-use Antvel\Http\Request;
-use Antvel\Product\Attributes;
+use Epikfy\Http\Request;
+use Epikfy\Product\Attributes;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Collection;
-use Antvel\Features\Repositories\FeaturesRepository;
+use Epikfy\Features\Repositories\FeaturesRepository;
 
 class ProductsRequest extends Request
 {

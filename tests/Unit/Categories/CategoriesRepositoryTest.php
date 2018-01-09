@@ -1,21 +1,21 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Categories;
+namespace Epikfy\Tests\Unit\Categories;
 
-use Antvel\Tests\TestCase;
-use Antvel\Categories\Normalizer;
-use Antvel\Product\Models\Product;
-use Antvel\Categories\Models\Category;
-use Antvel\Categories\Repositories\CategoriesRepository;
+use Epikfy\Tests\TestCase;
+use Epikfy\Categories\Normalizer;
+use Epikfy\Product\Models\Product;
+use Epikfy\Categories\Models\Category;
+use Epikfy\Categories\Repositories\CategoriesRepository;
 
 class CategoriesRepositoryTest extends TestCase
 {

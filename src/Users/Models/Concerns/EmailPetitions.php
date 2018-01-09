@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Models\Concerns;
+namespace Epikfy\Users\Models\Concerns;
 
 trait EmailPetitions
 {
@@ -20,7 +20,7 @@ trait EmailPetitions
      */
     public function emailChangePetitions()
     {
-        return $this->hasMany('Antvel\Users\Models\EmailChangePetition');
+        return $this->hasMany('Epikfy\Users\Models\EmailChangePetition');
     }
 
     /**

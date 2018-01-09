@@ -1,26 +1,26 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Notifications;
+namespace Epikfy\Tests\Unit\Notifications;
 
-use Antvel\Tests\TestCase;
-use Antvel\Users\Models\User;
+use Epikfy\Tests\TestCase;
+use Epikfy\Users\Models\User;
 use Illuminate\Notifications\DatabaseNotification;
-use Antvel\Notifications\Parsers\{ Label, Templates };
+use Epikfy\Notifications\Parsers\{ Label, Templates };
 
 class LabelsTest extends TestCase
 {
 	/**
 	 * @test
-	 * @expectedException Antvel\Notifications\Parsers\NotificationLabelsException
+	 * @expectedException Epikfy\Notifications\Parsers\NotificationLabelsException
 	 */
 	function it_throws_an_exception_if_status_was_not_provided()
 	{
@@ -41,7 +41,7 @@ class LabelsTest extends TestCase
 
 	/**
 	 * @test
-	 * @expectedException Antvel\Notifications\Parsers\NotificationLabelsException
+	 * @expectedException Epikfy\Notifications\Parsers\NotificationLabelsException
 	 */
 	function it_throws_an_exception_if_source_id_was_not_provided()
 	{
@@ -125,7 +125,7 @@ class LabelsTest extends TestCase
 	/** @test */
 	function it_resolves_the_label_data_from_a_given_eloquent_instance()
 	{
-		$order = factory('Antvel\Orders\Models\Order')->create(['status' => 'open']);
+		$order = factory('Epikfy\Orders\Models\Order')->create(['status' => 'open']);
 
 		$data = Label::make('push.orders')->with($order)->getData();
 

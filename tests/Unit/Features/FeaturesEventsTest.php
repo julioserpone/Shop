@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Features;
+namespace Epikfy\Tests\Unit\Features;
 
-use Antvel\Tests\TestCase;
-use Antvel\Features\Listeners\UpdateFeatureName;
-use Antvel\Features\Events\FeatureNameWasUpdated;
+use Epikfy\Tests\TestCase;
+use Epikfy\Features\Listeners\UpdateFeatureName;
+use Epikfy\Features\Events\FeatureNameWasUpdated;
 
 class FeaturesEventsTest extends TestCase
 {
@@ -26,16 +26,16 @@ class FeaturesEventsTest extends TestCase
 	{
 		$this->usingMySql();
 
-		$feature = factory('Antvel\Features\Models\Feature')->states('filterable')->create([
+		$feature = factory('Epikfy\Features\Models\Feature')->states('filterable')->create([
 			'validation_rules' => 'required',
 			'name' => 'color',
 			'help_message' => 'old help message',
 			'status' => true,
 		]);
 
-		$productA = factory('Antvel\Product\Models\Product')->create(['name' => 'white', 'features' => '{"color": "white", "weight": "11"}']);
-		$productB = factory('Antvel\Product\Models\Product')->create(['name' => 'red', 'features' => '{"color": "red", "weight": "12"}']);
-		$productC = factory('Antvel\Product\Models\Product')->create(['name' => 'none', 'features' => '{"weight": "13"}']);
+		$productA = factory('Epikfy\Product\Models\Product')->create(['name' => 'white', 'features' => '{"color": "white", "weight": "11"}']);
+		$productB = factory('Epikfy\Product\Models\Product')->create(['name' => 'red', 'features' => '{"color": "red", "weight": "12"}']);
+		$productC = factory('Epikfy\Product\Models\Product')->create(['name' => 'none', 'features' => '{"weight": "13"}']);
 
 		event($event = new FeatureNameWasUpdated($feature, 'foo'));
 		$listener = new UpdateFeatureName();

@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Notifications\Parsers;
+namespace Epikfy\Notifications\Parsers;
 
-use Antvel\Antvel;
+use Epikfy\Epikfy;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Filesystem\Filesystem;
@@ -83,7 +83,7 @@ class Templates
 	 */
 	public function default()
 	{
-		$file = Antvel::langPath() . DIRECTORY_SEPARATOR . "en" . DIRECTORY_SEPARATOR . $this->templatesFile . ".php";
+		$file = Epikfy::langPath() . DIRECTORY_SEPARATOR . "en" . DIRECTORY_SEPARATOR . $this->templatesFile . ".php";
 
 		$templates = (new Filesystem)->getRequire($file);
 

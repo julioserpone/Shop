@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -12,8 +12,8 @@
 use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use Faker\Generator as Faker;
-use Antvel\Orders\Models\Order;
-use Antvel\Comments\Models\Comment;
+use Epikfy\Orders\Models\Order;
+use Epikfy\Comments\Models\Comment;
 
 $factory->define(Comment::class, function (Faker $faker) use ($factory)
 {

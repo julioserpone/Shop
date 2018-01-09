@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Users\Events;
+namespace Epikfy\Users\Events;
 
 use Illuminate\Queue\SerializesModels;
 
@@ -27,7 +27,7 @@ class ProfileWasUpdated
     /**
      * The change email petition.
      *
-     * @var \Antvel\Users\Models\EmailChangePetition
+     * @var \Epikfy\Users\Models\EmailChangePetition
      */
     public $petition = null;
 

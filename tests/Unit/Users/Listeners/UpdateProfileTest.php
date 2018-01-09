@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Users\Listeners;
+namespace Epikfy\Tests\Unit\Users\Listeners;
 
 use Carbon\Carbon;
-use Antvel\Tests\TestCase;
-use Antvel\Users\Models\User;
+use Epikfy\Tests\TestCase;
+use Epikfy\Users\Models\User;
 use Illuminate\Support\Facades\Storage;
-use Antvel\Users\Listeners\UpdateProfile;
-use Antvel\Users\Events\ProfileWasUpdated;
-use Antvel\Users\Models\EmailChangePetition;
+use Epikfy\Users\Listeners\UpdateProfile;
+use Epikfy\Users\Events\ProfileWasUpdated;
+use Epikfy\Users\Models\EmailChangePetition;
 
 class UpdateProfileTest extends TestCase
 {

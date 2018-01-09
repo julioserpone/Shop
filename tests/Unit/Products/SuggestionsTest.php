@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products;
+namespace Epikfy\Tests\Unit\Products;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Models\Product;
-use Antvel\Categories\Models\Category;
-use Antvel\Product\Suggestions\Suggest;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Models\Product;
+use Epikfy\Categories\Models\Category;
+use Epikfy\Product\Suggestions\Suggest;
 
 class SuggestionsTest extends TestCase
 {
@@ -59,7 +59,7 @@ class SuggestionsTest extends TestCase
 	/** @test */
 	function it_suggests_products_based_on_a_given_user_preference_key()
 	{
-		$user = factory('Antvel\Users\Models\User')->make([
+		$user = factory('Epikfy\Users\Models\User')->make([
 			'preferences' => '{"my_searches":"incidunt,et,qui"}'
 		]);
 

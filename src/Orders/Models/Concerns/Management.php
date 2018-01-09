@@ -1,24 +1,24 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Orders\Models\Concerns;
+namespace Epikfy\Orders\Models\Concerns;
 
-use Antvel\Users\Models\User;
-use Antvel\Product\Models\Product;
+use Epikfy\Users\Models\User;
+use Epikfy\Product\Models\Product;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Auth;
-use Antvel\Orders\Models\OrderDetail;
-use Antvel\AddressBook\Models\Address;
-use Antvel\Users\Notifications\OrderWasUpdated;
-use Antvel\Product\Repositories\ProductsRepository;
+use Epikfy\Orders\Models\OrderDetail;
+use Epikfy\AddressBook\Models\Address;
+use Epikfy\Users\Notifications\OrderWasUpdated;
+use Epikfy\Product\Repositories\ProductsRepository;
 
 trait Management
 {

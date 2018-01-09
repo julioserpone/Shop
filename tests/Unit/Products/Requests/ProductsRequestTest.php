@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products;
+namespace Epikfy\Tests\Unit\Products;
 
-use Antvel\Tests\TestCase;
+use Epikfy\Tests\TestCase;
 use Illuminate\Support\Facades\Validator;
-use Antvel\Product\Requests\ProductsRequest;
+use Epikfy\Product\Requests\ProductsRequest;
 
 class ProductsRequestTest extends TestCase
 {
@@ -271,7 +271,7 @@ class ProductsRequestTest extends TestCase
 	/** @test */
 	function the_product_category_has_a_valid_category()
 	{
-		$category = factory('Antvel\Categories\Models\Category')->create()->id;
+		$category = factory('Epikfy\Categories\Models\Category')->create()->id;
 
 		$request = $this->submit(['category' => $category]);
 
@@ -330,12 +330,12 @@ class ProductsRequestTest extends TestCase
 	/** @test */
 	function it_builds_dynamic_features_rules_based_upon_request()
 	{
-		$featureRequired = factory('Antvel\Features\Models\Feature')->states('filterable')->create([
+		$featureRequired = factory('Epikfy\Features\Models\Feature')->states('filterable')->create([
 			'name' => 'featureRequired',
 			'validation_rules' => 'required'
 		]);
 
-		$featureMaxAndMin = factory('Antvel\Features\Models\Feature')->states('filterable')->create([
+		$featureMaxAndMin = factory('Epikfy\Features\Models\Feature')->states('filterable')->create([
 			'name' => 'featureMaxAndMin',
 			'validation_rules' => 'max:20|min:10'
 		]);

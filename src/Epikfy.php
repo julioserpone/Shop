@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel;
+namespace Epikfy;
 
-class Antvel
+class Epikfy
 {
     /**
-     * The Antvel Shop version.
+     * The Epikfy Shop version.
      *
      * @var string
      */
     const VERSION = '1.2.20';
 
     /**
-     * All of the service bindings for Antvel.
+     * All of the service bindings for Epikfy.
      *
      * @return array
      */
@@ -34,7 +34,7 @@ class Antvel
     }
 
     /**
-     * All of the service aliases for Antvel.
+     * All of the service aliases for Epikfy.
      *
      * @return array
      */
@@ -49,7 +49,7 @@ class Antvel
     }
 
     /**
-     * The Antvel components services providers.
+     * The Epikfy components services providers.
      *
      * @return array
      */
@@ -63,7 +63,7 @@ class Antvel
     }
 
     /**
-     * Get the base path of the Antvel installation.
+     * Get the base path of the Epikfy installation.
      *
      * @param string $path Optionally, a path to append to the base path
      *

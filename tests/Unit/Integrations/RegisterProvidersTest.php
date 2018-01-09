@@ -1,25 +1,25 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Integrations;
+namespace Epikfy\Tests\Unit\Integrations;
 
-use Antvel\Antvel;
-use Antvel\Tests\TestCase;
+use Epikfy\Epikfy;
+use Epikfy\Tests\TestCase;
 
 class RegisterProvidersTest extends TestCase
 {
 	/** @test */
-	function check_whether_the_antvel_providers_were_loaded()
+	function check_whether_the_Epikfy_providers_were_loaded()
 	{
-		foreach (Antvel::providers() as $provider) {
+		foreach (Epikfy::providers() as $provider) {
 			$this->assertArrayHasKey($provider, $this->app->getLoadedProviders());
 		}
 	}

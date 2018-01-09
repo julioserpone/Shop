@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Companies;
+namespace Epikfy\Companies;
 
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -39,7 +39,7 @@ class CompanyServiceProvider extends ServiceProvider
     /**
      * Returns the default company to be shared with all the application views.
      *
-     * @return \Antvel\Companies\Models\Company
+     * @return \Epikfy\Companies\Models\Company
      */
     protected function company()
     {
@@ -57,6 +57,6 @@ class CompanyServiceProvider extends ServiceProvider
      */
     public function provides()
     {
-        return ['antvel-company'];
+        return ['epikfy-company'];
     }
 }

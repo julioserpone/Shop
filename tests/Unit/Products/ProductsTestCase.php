@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products;
+namespace Epikfy\Tests\Unit\Products;
 
-use Antvel\Tests\TestCase;
+use Epikfy\Tests\TestCase;
 
 class ProductsTestCase extends TestCase
 {
@@ -19,15 +19,15 @@ class ProductsTestCase extends TestCase
 	{
 		parent::setUp();
 
-		$this->repository = $this->app->make('Antvel\Product\Products');
+		$this->repository = $this->app->make('Epikfy\Product\Products');
 	}
 
 	protected function createProductWithPictures($attr = [], $times = 3)
 	{
-		$product = factory('Antvel\Product\Models\Product')->create($attr);
+		$product = factory('Epikfy\Product\Models\Product')->create($attr);
 
 		for ($i=0; $i < $times; $i++) {
-			factory('Antvel\Product\Models\ProductPictures')->create([
+			factory('Epikfy\Product\Models\ProductPictures')->create([
 				'product_id' => $product->id,
 				'path' => $this->persistentUpload('images/products')->store('images/products/' . $product->id)
 			]);
@@ -39,7 +39,7 @@ class ProductsTestCase extends TestCase
 	protected function data()
 	{
 		return [
-			'category' => factory('Antvel\Categories\Models\Category')->create()->id,
+			'category' => factory('Epikfy\Categories\Models\Category')->create()->id,
 			'name' => 'Foo Bar',
 			'description' => 'Foo Bar Biz',
 			'cost' => 849,

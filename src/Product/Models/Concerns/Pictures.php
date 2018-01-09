@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product\Models\Concerns;
+namespace Epikfy\Product\Models\Concerns;
 
 trait Pictures
 {
@@ -20,7 +20,7 @@ trait Pictures
      */
     public function pictures()
     {
-        return $this->hasMany('Antvel\Product\Models\ProductPictures');
+        return $this->hasMany('Epikfy\Product\Models\ProductPictures');
     }
 
 	/**

@@ -1,28 +1,28 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Tests\Unit\Products\Parsers;
+namespace Epikfy\Tests\Unit\Products\Parsers;
 
-use Antvel\Tests\TestCase;
-use Antvel\Product\Models\Product;
-use Antvel\Product\Parsers\Filters;
+use Epikfy\Tests\TestCase;
+use Epikfy\Product\Models\Product;
+use Epikfy\Product\Parsers\Filters;
 
 class FiltersParserTest extends TestCase
 {
 	public function test_it_parses_the_category_filters_for_a_given_collection()
 	{
-		$category_01 = factory('Antvel\Categories\Models\Category')->create(['name' => 'foo']);
-		$category_02 = factory('Antvel\Categories\Models\Category')->create(['name' => 'bar']);
-		$category_03 = factory('Antvel\Categories\Models\Category')->create(['name' => 'biz']);
-		$category_04 = factory('Antvel\Categories\Models\Category', 'child')->create();
+		$category_01 = factory('Epikfy\Categories\Models\Category')->create(['name' => 'foo']);
+		$category_02 = factory('Epikfy\Categories\Models\Category')->create(['name' => 'bar']);
+		$category_03 = factory('Epikfy\Categories\Models\Category')->create(['name' => 'biz']);
+		$category_04 = factory('Epikfy\Categories\Models\Category', 'child')->create();
 
 		$products = collect([
 			factory(Product::class)->create(['category_id' => $category_01->id]),
@@ -113,9 +113,9 @@ class FiltersParserTest extends TestCase
 			factory(Product::class)->make(['features' => '{"foo": "111", "bar": "222", "biz": "333"}']),
 		]);
 
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
-		factory('Antvel\Features\Models\Feature')->states('filterable')->create(['name' => 'dimensions']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'color']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'weight']);
+		factory('Epikfy\Features\Models\Feature')->states('filterable')->create(['name' => 'dimensions']);
 
 		$filters = Filters::parse($products);
 		$filtersKeys = array_keys($filters);

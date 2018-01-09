@@ -1,18 +1,18 @@
 <?php
 
 /*
- * This file is part of the Antvel Shop package.
+ * This file is part of the Epikfy Shop package.
  *
- * (c) Gustavo Ocanto <gustavoocanto@gmail.com>
+ * (c) Julio Hernández <juliohernandezs@gmail.com>
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace Antvel\Product;
+namespace Epikfy\Product;
 
 use Illuminate\Support\Collection;
-use Antvel\Support\Images\Manager as Images;
+use Epikfy\Support\Images\Manager as Images;
 
 trait InteractWithPictures
 {
@@ -26,7 +26,7 @@ trait InteractWithPictures
 	/**
 	 * Creates pictures for the given product.
 	 *
-	 * @param  \Antvel\Product\Models\Product $product
+	 * @param  \Epikfy\Product\Models\Product $product
 	 * @param  array $attr
 	 *
 	 * @return void
@@ -43,7 +43,7 @@ trait InteractWithPictures
     /**
      * Updates pictures for the given product.
      *
-     * @param  \Antvel\Product\Models\Product $product
+     * @param  \Epikfy\Product\Models\Product $product
      * @param  array $attr
      *
      * @return void
@@ -87,7 +87,7 @@ trait InteractWithPictures
     /**
      * Delete the given pictures from the give product.
      *
-     * @param  \Antvel\Product\Models\Product $product
+     * @param  \Epikfy\Product\Models\Product $product
      * @param  array  $toDelete
      *
      * @return void
