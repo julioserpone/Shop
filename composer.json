@@ -1,22 +1,22 @@
 {
     "license": "MIT",
-    "name": "antvel/shop",
-    "homepage": "http://antvel.com",
+    "name": "julioserpone/epikfy-framework",
+    "homepage": "http://www.epikfy.com",
     "type": "laravel-bundle",
-    "description": "The Antvel e-commerce Framework.",
-    "keywords": ["antvel", "laravel", "e-commerce", "ecommerce", "shop", "portal", "market", "store"],
+    "description": "The Epikfy e-commerce Framework",
+    "keywords": ["epikfy", "laravel", "e-commerce", "ecommerce", "shop", "portal", "market", "store"],
     "minimum-stability": "dev",
 
     "authors": [
         {
-            "name": "Gustavo Ocanto",
-            "email": "gustavoocanto@gmail.com"
+            "name": "Julio Hernandez",
+            "email": "juliohernandezs@gmail.com"
         }
     ],
 
     "support": {
-        "source": "https://github.com/ant-vel/Shop",
-        "issues": "https://github.com/ant-vel/Shop/issues"
+        "source": "https://github.com/julioserpone/epikfy-shop",
+        "issues": "https://github.com/julioserpone/epikfy-shop/issues"
     },
 
     "require": {
@@ -54,13 +54,13 @@
             "database"
         ],
         "psr-4": {
-            "Antvel\\": "src/"
+            "Epikfy\\": "src/"
         }
     },
 
     "autoload-dev": {
         "psr-4": {
-            "Antvel\\Tests\\": "tests"
+            "Epikfy\\Tests\\": "tests"
         },
         "classmap": [
             "tests/TestCase.php"
@@ -74,7 +74,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Antvel\\AntvelServiceProvider"
+                "Epikfy\\EpikfyServiceProvider"
             ]
         }
     }
