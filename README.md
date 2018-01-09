@@ -1,4 +1,4 @@
-## The Antvel e-commerce Framework
+## The Epikfy e-commerce Framework
 
 
 
@@ -8,23 +8,22 @@
 
 
 
-> **Note:** This repository contains the core code of the Antvel e-commerce. If you want to build an application using Antvel, visit the main [Antvel repository](https://github.com/ant-vel/App).
+> **Note:** This repository contains the core code of the Epikfy e-commerce. If you want to build an application using Epikfy, visit the main [Epikfy repository](https://github.com/julioserpone/epikfy-shop).
  
 
 
 ## Demo
 
-* <a href="http://antvel.com" target="_blank">http://antvel.com</a>
-* Admin: admin@antvel.com / admin
-* Buyer: buyer@antvel.com / admin
-* Seller: seller@antvel.com / admin
+* <a href="http://www.epikfy.com" target="_blank">http://www.epikfy.com</a>
+* Admin: admin@epikfy.com / admin
+* Buyer: buyer@epikfy.com / admin
+* Seller: seller@epikfy.com / admin
 
 
 ## To do list
 If you like antvel and want to contribute, you can check this task list.
 
-<a href="https://github.com/ant-vel/Discussion/issues" target="_blank">https://github.com/ant-vel/Discussion/issues</a>
-
+<a href="https://github.com/julioserpone/epikfy-shop/Discussion/issues" target="_blank">https://github.com/julioserpone/epikfy-shop/Discussion/issues</a>
 
 
 ## Chat Rooms
@@ -34,7 +33,7 @@ We keep the conversation going in our ***Slack*** channel, so if you would, you 
 
 ## Gratipay Profile
 
-<a href="https://gratipay.com/Antvel/" target="_blank">https://gratipay.com/Antvel/</a>
+<a href="https://gratipay.com/epikfy/" target="_blank">https://gratipay.com/epikfy/</a>
 
 ## Contributing
 
@@ -42,19 +41,19 @@ Please feel free to fork this package and contribute by submitting a pull reques
 
 ## License
 
-The MIT License (MIT). Please see [License File](https://github.com/ant-vel/App/blob/master/LICENSE) for more information.
+The MIT License (MIT). Please see [License File](https://github.com/julioserpone/epikfy/blob/master/LICENSE) for more information.
 
 
 ## How can I thank you?
 Why not star the github repo and share the link for this repository on Twitter?
 
 
-Don't forget to [follow me on twitter](https://twitter.com/gocanto)!
+Don't forget to [follow me on twitter](https://twitter.com/julioserpone)!
 
 Thanks!
 
-Gustavo Ocanto.
-gustavoocanto@gmail.com
+Julio Hernandez.
+juliohernandezs@gmail.com
 
 
 
